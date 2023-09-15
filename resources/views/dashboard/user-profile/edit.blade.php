@@ -28,7 +28,7 @@
                             @method('PATCH')
                             @include('dashboard.user-profile.form-update')
                             <input type="submit" value="تعديل" class="btn btn-primary border-info text-light me-2">
-                            <a href="javascript:void(0);" class="btn btn-warning text-light me-2">تريد تغيير كلمة المرور؟</a>
+                            <a href="{{ route('user-profile.changePasswordView', $user->id) }}" class="btn btn-warning text-light me-2">تريد تغيير كلمة المرور؟</a>
                             <a href="{{ route('user-profile.index', $user->id) }}" class="btn btn-secondary text-light me-2">الرجوع الي الملف الشخصي</a>
                         </form>
                     </div>

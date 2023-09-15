@@ -25,7 +25,7 @@
                     <div class="tab-content" id="pills-tabContent">
                         @include('dashboard.user-profile.form-view')
                         <a href="{{ route('user-profile.edit', $user->id) }}" class="btn btn-secondary text-light me-2">تعديل حسابك الشخصي؟</a>
-                        <a href="javascript:void(0);" class="btn btn-warning text-light me-2">تريد تغيير كلمة المرور؟</a>
+                        <a href="{{ route('user-profile.changePasswordView', $user->id) }}" class="btn btn-warning text-light me-2">تريد تغيير كلمة المرور؟</a>
                     </div>
                 </div>
             </div>

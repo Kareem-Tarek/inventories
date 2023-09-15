@@ -36,8 +36,8 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/user-profile/{id}', [UserProfileController::class, 'indexProfile'])->name('user-profile.index');
     Route::get('/user-profile/{id}/edit', [UserProfileController::class, 'editProfile'])->name('user-profile.edit');
     Route::patch('/user-profile/{id}', [UserProfileController::class, 'update'])->name('user-profile.updateInfo');
-    Route::get('/user-profile/change-password/{id}', [UserProfileController::class, 'changePasswordView'])->name('user-profile.changePassView');
-    Route::patch('/user-profile/change-password/{id}/submit', [UserProfileController::class, 'changePassword'])->name('user-profile.changePass');
+    Route::get('/user-profile/change-password/{id}', [UserProfileController::class, 'changePasswordView'])->name('user-profile.changePasswordView');
+    Route::patch('/user-profile/change-password/{id}/submit', [UserProfileController::class, 'changePassword'])->name('user-profile.changePassword');
     //---------> END User Profile routes
 
     //---------> START Category routes
