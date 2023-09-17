@@ -4,7 +4,7 @@
 تعديل كلمة المرور ({{ $user->name }})
 @endsection
 
-@section('content')
+@section('main-content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -15,22 +15,22 @@
             <p>
                 @if(session()->has('password_changed_successfully'))
                     <div class="alert alert-success text-center">
-                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                         {{ session()->get('password_changed_successfully') }}
                     </div>
                 @elseif(session()->has('old_req_not_matching_db'))
                     <div class="alert alert-danger text-center">
-                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                         {{ session()->get('old_req_not_matching_db') }}
                     </div>
                 @elseif(session()->has('confirm_not_matching_new'))
                     <div class="alert alert-danger text-center">
-                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                         {{ session()->get('confirm_not_matching_new') }}
                     </div>
                 @elseif(session()->has('new_is_matching_old'))
                     <div class="alert alert-danger text-center">
-                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                         {{ session()->get('new_is_matching_old') }}
                     </div>
                 @endif

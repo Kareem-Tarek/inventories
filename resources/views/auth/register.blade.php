@@ -1,11 +1,12 @@
 @extends('layouts.dashboard.master')
 @section('title', 'تسجيل حساب جديد')
-@section('content')
-<div class="container" @if('dir="rtl"') style="margin-right: 8%;"  @endif>
+@section('title-heading', 'تسجيل حساب جديد')
+@section('main-content')
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header h3"><b>{{ __('تسجيل حساب جديد') }}</b></div>
+                <div class="p-4 h2 text-center shadow font-weight-bold" style="background: linear-gradient(to top left, #24695C, #4252a0); color: snow;"><b>{{ __('تسجيل حساب جديد') }}</b></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

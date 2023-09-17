@@ -4,7 +4,7 @@
 تعديل الفئة ({{ $Category_model->title }})
 @endsection
 
-@section('content')
+@section('main-content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -15,7 +15,7 @@
             <p>
                 @if(session()->has('updated_category_successfully'))
                     <div class="alert alert-success text-center">
-                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                         {{ session()->get('updated_category_successfully') }}
                     </div>
                 @endif

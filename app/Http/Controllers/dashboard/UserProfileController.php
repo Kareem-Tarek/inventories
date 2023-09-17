@@ -31,16 +31,16 @@ class UserProfileController extends Controller
     {
         //Validate User
         $request->validate([
-            'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['nullable', 'string', 'email', 'max:255'],
-            'phone'    => ['required','regex:/^([0-9]+)$/', 'min:11'],
-            'address'  => ['required', 'string', 'max:255']
+            'name'    => ['required', 'string', 'max:255'],
+            'email'   => ['nullable', 'string', 'email', 'max:255'],
+            'phone'   => ['required','regex:/^([0-9]+)$/', 'min:11'],
+            'address' => ['required', 'string', 'max:255']
         ]);
 
         //updating logged in user
-        $loggedInUser  = auth()->user()->id;
-        $user_old      = user::findOrFail($loggedInUser);
-        $user          = user::findOrFail($loggedInUser);
+        $loggedInUser = auth()->user()->id;
+        $user_old     = user::findOrFail($loggedInUser);
+        $user         = user::findOrFail($loggedInUser);
 
         if($user->name == $request->name){
             $user->name = $user->name;
@@ -74,18 +74,18 @@ class UserProfileController extends Controller
         $user = auth()->user();
 
         if(!Hash::check($request->old_password, $user->password)) {
-            return redirect()->back()->with('old_req_not_matching_db', 'Old password did not match "the Current Password". Please try again!');
+            return redirect()->back()->with('old_req_not_matching_db', 'كلمة المرور التي أدخلتها لا تطابق "كلمة المرور الحالية". حاول مرة اخرى!');
         }
         elseif($request->confirm_new_password != $request->new_password) {
-            return redirect()->back()->with('confirm_not_matching_new', 'New Password did not match "Confirm Password". Please try again!');
+            return redirect()->back()->with('confirm_not_matching_new', 'كلمة المرور الجديدة التي أدخلتها لا تتطابق مع "تأكيد كلمة المرور". حاول مرة اخرى!');
         }
         elseif(Hash::check($request->new_password, $user->password)) {
-            return redirect()->back()->with('new_is_matching_old', 'New Password must be different than the old password');
+            return redirect()->back()->with('new_is_matching_old', 'كلمة المرور الجديدة التي أدخلتها يجب أن تكون مختلفة عن كلمة المرور الحالية!');
         }
         elseif(Hash::check($request->old_password, $user->password) && $request->old_password != "" && $request->new_password != "") {
             $user->password = bcrypt($request->new_password);
             $user->save();
-            return redirect()->back()->with('password_changed_successfully', 'Your password has been updated successfully!');
+            return redirect()->back()->with('password_changed_successfully', 'لقد تم تحديث كلمة السر الخاصة بك بنجاح!');
         }
     }
 

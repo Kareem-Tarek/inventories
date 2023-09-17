@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.master')
 @section('title', 'جميع الفئات')
-@section('content')
+@section('main-content')
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
@@ -8,12 +8,12 @@
         <p>
             @if(session()->has('created_category_successfully'))
                 <div class="alert alert-success text-center">
-                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                     {{ session()->get('created_category_successfully') }}
                 </div>
             @elseif(session()->has('deleted_category_successfully'))
                 <div class="alert alert-success text-center">
-                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                    <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                     {{ session()->get('deleted_category_successfully') }}
                 </div>
             @endif
@@ -25,9 +25,9 @@
             <div class="card shadow">
               <div class="card-body">
                 <!-- table -->
-                        <table class="table table-bordered table-hover mb-0">
+                        <table class="table table-bordered border border-5 table-hover mb-0">
                             <thead class="thead-dark">
-                            <tr class="h5">
+                            <tr class="h6 table-secondary">
                                 <th>بطاقة التعريف (<b>ID#</b>)</th>
                                 <th>العنوان</th>
                                 <th>الوصف</th>

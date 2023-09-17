@@ -1,7 +1,7 @@
 @extends('layouts.dashboard.master')
 @inject('subCategory_model', 'App\Models\SubCategory')
 @section('title', 'إضافة فئة فرعية')
-@section('content')
+@section('main-content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">

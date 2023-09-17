@@ -1,21 +1,15 @@
 @extends('layouts.dashboard.master')
-
-@section('title')
-الملف الشخصي ({{ $user->name }})
-@endsection
-
-@section('content')
+@section('title') الملف الشخصي ({{ $user->name }}) @endsection
+@section('title-heading') {{ $user->name }} @endsection
+@section('main-content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-            <h4 class="card-title">الملف الشخصي</h4>
-            <p class="card-description">
-                بياناتك (<span class="fw-bold">{{ $user->name }}</span>)
-            </p>
+            <h4 class="card-title">بياناتك (<span class="fw-bold">{{ $user->name }}</span>)</h4>
             <p>
                 @if(session()->has('updated_user_successfully'))
                     <div class="alert alert-success text-center">
-                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-danger" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
                         {{ session()->get('updated_user_successfully') }}
                     </div>
                 @endif
