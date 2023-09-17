@@ -4,9 +4,9 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Type;
+use App\Models\Store;
 
-class TypeController extends Controller
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
