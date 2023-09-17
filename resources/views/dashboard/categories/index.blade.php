@@ -25,7 +25,7 @@
             <div class="card shadow">
               <div class="card-body">
                 <!-- table -->
-                        <table class="table table-bordered border border-5 table-hover mb-0">
+                        <table class="table table-bordered border border-5 table-hover mb-0 @if($categories->count() == 0) d-none @endif">
                             <thead class="thead-dark">
                             <tr class="h6 table-secondary">
                                 <th>بطاقة التعريف (<b>ID#</b>)</th>

@@ -8,6 +8,7 @@ use App\Http\Controllers\dashboard\SubCategoryController;
 use App\Http\Controllers\dashboard\QuantityController;
 use App\Http\Controllers\dashboard\TypeController;
 use App\Http\Controllers\dashboard\CompanyController;
+use App\Http\Controllers\dashboard\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     //---------> START Company routes
     Route::resource('/companies', CompanyController::class);
     //---------> END Company routes
+
+    //---------> START Store routes
+    Route::resource('/stores', StoreController::class);
+    //---------> END Store routes
 });
 //---------> END Dashboard routes
 
