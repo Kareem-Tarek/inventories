@@ -23,6 +23,7 @@
             <li class="back-btn">
               <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
             </li>
+            <li><a class="nav-link menu-title link-nav" href="{{ route('dashboard') }}"><i data-feather="home"></i><span>الصفحة الرئيسية</span></a></li>
             <li class="sidebar-main-title">
               <div>
                 <h6>عناصر لوحة القيادة</h6>
