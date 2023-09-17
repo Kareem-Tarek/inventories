@@ -1,27 +1,21 @@
 <header class="main-nav">
-    <div class="sidebar-user text-center"><a class="setting-primary" href="@if(auth()->user()) {{ route('user-profile.index', auth()->user()->id) }} @else javascript:void(0) @endif"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="/assets/images/dashboard/1.png" alt="">
+    <div class="sidebar-user text-center"><a class="setting-primary" href="{{ route('user-profile.index', auth()->user()->id) }}"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="/assets/images/dashboard/1.png" alt="">
       <div class="badge-bottom"><span class="badge badge-primary">New</span></div>
-      <a href="@if(auth()->user()) {{ route('user-profile.index', auth()->user()->id) }} @else javascript:void(0); @endif" class="@if(!auth()->user()) pe-none @endif"><h6 class="mt-3 f-14 f-w-600 @if(!auth()->user()) text-danger @endif">{{ auth()->user()->name  ?? 'مستخدم غير مصادق أو غير مسجل الدخول!' }}</h6></a>
+      <a href="{{ route('user-profile.index', auth()->user()->id) }}"><h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->name }}</h6></a>
       {{-- <p class="mb-0 font-roboto">Human Resources Department</p> --}}
       <ul>
-        <li>@auth<span><span class="counter">١٩.٨</span> ألف</span>@endauth
-            @guest <span>٠</span> @endguest
+        <li><span><span class="counter">١٩.٨</span> ألف</span>
           <p>أتابع</p>
         </li>
-        <li>@auth<span>٢</span>@endauth
-            @guest <span>٠</span> @endguest
+        <li><span>٢</span>
           <p>خبرة (سنوات)</p>
         </li>
-        <li>@auth<span><span class="counter">٩٥.٢</span> ألف</span>@endauth
-            @guest <span>٠</span> @endguest
+        <li><span><span class="counter">٩٥.٢</span> ألف</span>
           <p>متابع</p>
         </li>
       </ul>
     </div>
     <nav>
-    @if(!auth()->user())
-    <div class="text-center text-danger"><b>نآسف لكم، يجب عليك تسجيل الدخول للوصول إلى الشريط الجانبي!</b></div>
-    @else
       <div class="main-navbar">
         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
         <div id="mainnav">
@@ -125,6 +119,5 @@
         </div>
         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
       </div>
-      @endif
     </nav>
   </header>
