@@ -54,7 +54,8 @@ class RegisterController extends Controller
             'name'     => ['required', 'string', 'max:255'],
             'email'    => ['nullable', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone'    => ['required','regex:/^([0-9]+)$/', 'min:11'],
+            // 'phone'    => ['required','regex:/^([0-9]{11})$/', 'min:11'],
+            'phone'    => ['required', 'numeric', 'min:11', 'max:11'],
             'address'  => ['required', 'string', 'max:255']
         ]);
 
@@ -76,8 +77,10 @@ class RegisterController extends Controller
             'password.min'       => 'يجب أن لا تقل كلمة المرور عن 8 أحرف.',
             'password.confirmed' => 'تأكيد كلمة المرور غير متطابق.',
             'phone.required'     => 'الرجاء إدخال رقم هاتفك.',
-            'phone.regex'        => 'يجب أن يكون رقم هاتفك رقم هاتف صالحًا.',
+            // 'phone.regex'        => 'يجب أن يكون رقم هاتفك رقم هاتف صالحًا.',
+            'phone.numeric'      => 'يجب أن يكون حقل الهاتف رقمًا.',
             'phone.min'          => 'يجب أن لا يقل طول رقم هاتفك عن 11 رقمًا.',
+            'phone.max'          => 'يجب ألا يزيد طول حقل الهاتف عن 11 رقمًا.',
             'address.required'   => 'الرجاء إدخال عنوانك.',
             'address.string'     => 'يجب أن يكون عنوانك نصًا.',
             'address.max'        => 'يجب أن لا يزيد طول عنوانك عن 255 حرفًا.',
