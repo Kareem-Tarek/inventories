@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->unique();
             $table->float('value');
             $table->float('discount')->default(0);
             $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('cascade');

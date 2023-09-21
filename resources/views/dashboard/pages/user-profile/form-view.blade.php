@@ -1,9 +1,4 @@
 <div class="form-group">
-    <label for="id">بطاقة التعريف (<b>ID#</b>)</label>
-    <input type="text" class="form-control border-1 border-dark mb-2" value="{{ $user->id }}" disabled>
-</div>
-
-<div class="form-group">
     <label for="name">الاسم</label>
     <input type="text" class="form-control border-1 border-dark mb-2" disabled id="name"
     value="{{Request::old('name') ? Request::old('name') : $user->name}}">

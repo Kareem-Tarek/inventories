@@ -1,9 +1,9 @@
 <header class="main-nav">
     <div class="sidebar-user text-center"><a class="setting-primary" href="{{ route('user-profile.index', auth()->user()->id) }}"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="/assets/images/dashboard/1.png" alt="">
-      <div class="badge-bottom"><span class="badge badge-primary">جديد</span></div>
+      {{-- <div class="badge-bottom"><span class="badge badge-primary">جديد</span></div> --}}
       <a href="{{ route('user-profile.index', auth()->user()->id) }}"><h6 class="mt-3 f-14 f-w-600">{{ auth()->user()->name }}</h6></a>
       {{-- <p class="mb-0 font-roboto">Human Resources Department</p> --}}
-      <ul>
+      {{-- <ul>
         <li><span class="h6"><span class="counter">١٩.٨</span> ألف</span>
           <p><b>أتابع</b></p>
         </li>
@@ -13,7 +13,7 @@
         <li><span class="h6"><span class="counter">٩٥.٢</span> ألف</span>
           <p><b>متابع</b></p>
         </li>
-      </ul>
+      </ul> --}}
     </div>
     <nav>
       <div class="main-navbar">

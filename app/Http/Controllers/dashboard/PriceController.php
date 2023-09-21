@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\Models\Price;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Price;
+use App\Models\Product;
 
 class PriceController extends Controller
 {
@@ -14,7 +16,8 @@ class PriceController extends Controller
      */
     public function index()
     {
-        //
+        $prices = Price::all();
+        return view('dashboard.pages.prices.index', compact('prices'));
     }
 
     /**
@@ -24,7 +27,8 @@ class PriceController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('dashboard.pages.prices.create', compact('products'));
     }
 
     /**
@@ -35,16 +39,34 @@ class PriceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate Price
+        $request->validate([
+            'title'      => 'required|unique:prices,title|max:255',
+            'value'      => 'required|numeric',
+            'discount'   => 'required|numeric',
+            'product_id' => 'nullable|integer',
+        ]);
+
+        //create a new object (row) for the Price
+        $price             = new Price();
+        $price->title      = $request->title;
+        $price->value      = $request->value;
+        $price->discount   = $request->discount;
+        $price->product_id = $request->product_id;
+        $price->updated_at = null;
+        $price->save();
+
+        return redirect()->route('prices.index')
+            ->with('created_price_successfully', "تم إنشاء السعر ($price->title) بنجاح.");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Price  $price
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Price $price)
+    public function show($id)
     {
         //
     }
@@ -52,34 +74,64 @@ class PriceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Price  $price
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Price $price)
+    public function edit($id)
     {
-        //
+        $Price_model = Price::findOrFail($id);
+        $products    = Product::all();
+        return view('dashboard.pages.prices.edit', compact('Price_model', 'products'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Price  $price
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Price $price)
+    public function update(Request $request, $id)
     {
-        //
+        //Validate Price
+        $request->validate([
+            'title'      => 'required|max:255',
+            'value'      => 'required|numeric',
+            'discount'   => 'required|numeric',
+            'product_id' => 'nullable|integer',
+        ]);
+
+        //updating an existing object (row) from the Price
+        $price_old          = Price::find($id);
+        $price              = Price::find($id);
+        if($price->title == $request->title){
+            $price->title = $price->title;
+        }
+        else{
+            $price->title = $request->title;
+        }
+        $price->value      = $request->value;
+        $price->discount   = $request->discount;
+        $price->product_id = $request->product_id;
+        $price->save();
+
+        return redirect()->route('prices.edit', $price->id)
+            ->with('updated_price_successfully', "تم تحديث السعر ($price_old->title) بنجاح.");
     }
+
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Price  $price
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Price $price)
+    public function destroy($id)
     {
-        //
+        $price = Price::findOrFail($id);
+        $price->delete();
+
+        return redirect()->route('prices.index')
+            ->with('deleted_price_successfully', "تم حذف السعر ($price->title) بنجاح.");
     }
 }

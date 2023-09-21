@@ -51,13 +51,13 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/categories', CategoryController::class);
     //---------> END Category routes
 
-    //---------> START SubCategory routes
+    //---------> START Sub Category routes
     Route::resource('/subcategories', SubCategoryController::class);
-    //---------> END SubCategory routes
+    //---------> END Sub Category routes
 
-    //---------> START Quantity routes
+    //---------> START Unit routes
     Route::resource('/units', UnitController::class);
-    //---------> END Quantity routes
+    //---------> END Unit routes
 
     //---------> START Type routes
     Route::resource('/types', TypeController::class);
@@ -67,9 +67,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/companies', CompanyController::class);
     //---------> END Company routes
 
-    //---------> START Exported Products routes
+    //---------> START Exported Product routes
     Route::resource('/exported-products', ExportedProductController::class);
-    //---------> END Exported Products routes
+    //---------> END Exported Product routes
 
     //---------> START Product routes
     Route::resource('/products', ProductController::class);
