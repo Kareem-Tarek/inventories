@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="mb-2 page-title">الشركات</h2>
+        <h2 class="mb-2 page-title">الشركات ({{ $companies->count() }})</h2>
         <p>
             @if(session()->has('created_company_successfully'))
                 <div class="alert alert-success text-center">

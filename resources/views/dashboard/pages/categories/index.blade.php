@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="mb-2 page-title">الفئات</h2>
+        <h2 class="mb-2 page-title">الفئات ({{ $categories->count() }})</h2>
         <p>
             @if(session()->has('created_category_successfully'))
                 <div class="alert alert-success text-center">

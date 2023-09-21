@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="mb-2 page-title">الفئات الفرعية</h2>
+        <h2 class="mb-2 page-title">الفئات الفرعية ({{ $subCategories->count() }})</h2>
         <p>
             @if(session()->has('created_subcategory_successfully'))
                 <div class="alert alert-success text-center">

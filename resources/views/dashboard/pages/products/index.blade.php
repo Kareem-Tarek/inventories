@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="mb-2 page-title">المنتجات</h2>
+        <h2 class="mb-2 page-title">المنتجات ({{ $products->count() }})</h2>
         <p>
             @if(session()->has('created_product_successfully'))
                 <div class="alert alert-success text-center">
@@ -48,9 +48,7 @@
                             @forelse($products as $product)
                             <tr>
                                 <td>{{ $product->id }}</td>
-                                <td>
-                                    {{ $product->title }}
-                                </td>
+                                <td>{{ $product->title }}</td>
                                 <td>{{ $product->description ?? 'لا يوجد' }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->unit->title }}</td>

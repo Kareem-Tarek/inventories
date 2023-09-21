@@ -7,6 +7,19 @@
     <div class="card">
       <div class="card-body">
             <h4 class="card-title">المنتج</h4>
+            <p>
+                @if(session()->has('created_product_successfully'))
+                    <div class="alert alert-success text-center">
+                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                        {{ session()->get('created_product_successfully') }}
+                    </div>
+                @elseif(session()->has('deleted_product_successfully'))
+                    <div class="alert alert-success text-center">
+                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
+                        {{ session()->get('deleted_product_successfully') }}
+                    </div>
+                @endif
+            </p>
             <p class="card-description">إضافة منتج</p>
             <div class="col-sm-12 col-xl-12 xl-100">
                 {{-- <div class="card-header pb-0">

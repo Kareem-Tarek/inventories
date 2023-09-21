@@ -73,6 +73,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
 
     //---------> START Product routes
     Route::resource('/products', ProductController::class);
+    Route::get('/search', [ProductController::class, 'productsSearchResult'])->name('productsSearchResult.index');
     //---------> END Product routes
 
     //---------> START Price routes

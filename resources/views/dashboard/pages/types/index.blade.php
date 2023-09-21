@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="mb-2 page-title">الأنواع</h2>
+        <h2 class="mb-2 page-title">الأنواع ({{ $types->count() }})</h2>
         <p>
             @if(session()->has('created_type_successfully'))
                 <div class="alert alert-success text-center">

@@ -24,6 +24,16 @@ class ProductController extends Controller
         return view('dashboard.pages.products.index', compact('products'));
     }
 
+    public function productsSearchResult(Request $request)
+    {
+        $search_text_input     = $request->search_query;
+        $products_result       = Product::where('title','LIKE',"%{$search_text_input}%")->get();
+        $products_result_count = $products_result->count();
+
+        return view('dashboard.pages.products.search-result.search-result',
+        compact('search_text_input', 'products_result', 'products_result_count'))
+        ->with('i' , ($request->input('page', 1) - 1) * 5);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -77,7 +87,7 @@ class ProductController extends Controller
         $product->updated_at      = null;
         $product->save();
 
-        return redirect()->route('products.index')
+        return redirect()->back()
             ->with('created_product_successfully', "تم إنشاء المنتج ($product->title) بنجاح.");
     }
 
@@ -164,7 +174,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('products.index')
+        return redirect()->back()
             ->with('deleted_product_successfully', "تم حذف المنتج ($product->title) بنجاح.");
     }
 }

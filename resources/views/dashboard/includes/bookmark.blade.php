@@ -8,7 +8,7 @@
             @if(!Route::is('dashboard'))<li class="breadcrumb-item active">@yield('title-heading')</li>@endif
           </ol>
         </div>
-        <div class="col-sm-6">
+        {{-- <div class="col-sm-6">
           <!-- Bookmark Start-->
           <div class="bookmark">
             <ul>
@@ -26,7 +26,7 @@
             </ul>
           </div>
           <!-- Bookmark Ends-->
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>
