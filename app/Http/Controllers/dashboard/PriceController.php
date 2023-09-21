@@ -44,7 +44,7 @@ class PriceController extends Controller
             'title'      => 'required|unique:prices,title|max:255',
             'value'      => 'required|numeric',
             'discount'   => 'required|numeric',
-            'product_id' => 'nullable|integer',
+            'product_id' => 'required|integer',
         ]);
 
         //create a new object (row) for the Price
@@ -98,7 +98,7 @@ class PriceController extends Controller
             'title'      => 'required|max:255',
             'value'      => 'required|numeric',
             'discount'   => 'required|numeric',
-            'product_id' => 'nullable|integer',
+            'product_id' => 'required|integer',
         ]);
 
         //updating an existing object (row) from the Price

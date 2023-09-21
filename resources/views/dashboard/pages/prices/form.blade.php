@@ -17,7 +17,7 @@
 </div>
 
 <div class="form-group">
-    <label for="value">السعر</label>
+    <label for="value">السعر <span class="text-danger">*</span></label>
     <input type="text" name="value" class="form-control border-1 border-dark @error('value') is-invalid @enderror" id="value" placeholder="أدخل قيمة السعر هنا..."
     value="{{Request::old('value') ? Request::old('value') : $Price_model->value}}">
     @error('value')
@@ -28,7 +28,7 @@
 </div>
 
 <div class="form-group">
-     <label for="value">التخفيض (%)</label>
+     <label for="value">التخفيض (%) <span class="text-danger">*</span></label>
      <select name="discount" class="form-control select border-1 border-dark @error('discount') is-invalid @enderror" id="discount">
         <option value="" disabled>---------- الرجاء تحديد الخصم ----------</option>
         @for($d = 0.00; $d < 1; $d = $d + 0.01)
@@ -49,7 +49,7 @@
 </div>
 
 <div class="form-group">
-    <label for="product_id">المنتج</label>
+    <label for="product_id">المنتج <span class="text-danger">*</span></label>
     <select name="product_id" class="form-control select border-1 border-dark @error('product_id') is-invalid @enderror">
         <option value="" class="@if($products->count() == 0) d-none @endif" selected> ---------- اختر المنتج ---------- </option>
         @forelse($products as $product)
