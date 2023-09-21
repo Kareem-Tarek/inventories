@@ -34,8 +34,7 @@ class UserProfileController extends Controller
         $request->validate([
             'name'    => ['required', 'string', 'max:255'],
             'email'   => ['nullable', 'string', 'email', 'max:255'],
-            // 'phone'   => ['required','regex:/^([0-9]{11})$/', 'min:11'],
-            'phone'   => ['required', 'numeric', 'min:11', 'max:11'],
+            'phone'   => ['required', 'numeric', 'min:11', 'max:11', 'regex:/^([0-9]{11})$/'],
             'address' => ['required', 'string', 'max:255']
         ]);
 
