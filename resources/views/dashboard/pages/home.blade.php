@@ -15,7 +15,7 @@
                 <div class="round-box">
                   <i data-feather="box"></i>
                 </div>
-                <h5>{{ \App\Models\Category::all()->count() ?? 0 }}</h5>
+                <h5></h5>
                 <p><a class="h4 text-decoration-underline" href="{{ route('categories.index') }}">الفئات</a></p>
                 {{-- <a class="btn-arrow arrow-primary" href="javascript:void(0)"><i class="toprightarrow-primary fa fa-arrow-up me-2"></i>95.54% </a> --}}
                 <div class="parrten">
@@ -42,7 +42,7 @@
                 <div class="round-box">
                     <i data-feather="codepen"></i>
                 </div>
-                <h5>{{ \App\Models\SubCategory::all()->count() ?? 0 }}</h5>
+                <h5></h5>
                 <p><a class="h4 text-decoration-underline" href="{{ route('subcategories.index') }}">الفئات الفرعية</a></p>
                 {{-- <a class="btn-arrow arrow-secondary" href="javascript:void(0)"><i class="toprightarrow-secondary fa fa-arrow-up me-2"></i>90.54% </a> --}}
                 <div class="parrten">
@@ -70,7 +70,7 @@
                     </g>
                   </svg>
                 </div>
-                <h5>{{ \App\Models\Company::all()->count() ?? 0 }}</h5>
+                <h5></h5>
                 <p><a class="h4 text-decoration-underline" href="{{ route('companies.index') }}">الشركات</a></p>
                 {{-- <a class="btn-arrow arrow-secondary" href="javascript:void(0)"><i class="toprightarrow-secondary fa fa-arrow-up me-2"></i>90.54% </a> --}}
                 <div class="parrten">
@@ -98,8 +98,8 @@
                     </g>
                   </svg>
                 </div>
-                <h5>{{ \App\Models\Store::all()->count() ?? 0 }}</h5>
-                <p><a class="h4 text-decoration-underline" href="{{ route('stores.index') }}">المخازن</a></p>
+                <h5></h5>
+                <p><a class="h4 text-decoration-underline" href="{{ route('exported-products.index') }}">منصرف المخازن</a></p>
                 {{-- <a class="btn-arrow arrow-secondary" href="javascript:void(0)"><i class="toprightarrow-secondary fa fa-arrow-up me-2"></i>90.54% </a> --}}
                 <div class="parrten">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -126,7 +126,7 @@
                     </g>
                   </svg>
                 </div>
-                <h5>{{ \App\Models\Type::all()->count() ?? 0 }}</h5>
+                <h5></h5>
                 <p><a class="h4 text-decoration-underline" href="{{ route('types.index') }}">الأنواع</a></p>
                 {{-- <a class="btn-arrow arrow-secondary" href="javascript:void(0)"><i class="toprightarrow-secondary fa fa-arrow-up me-2"></i>90.54% </a> --}}
                 <div class="parrten">
@@ -154,8 +154,8 @@
                     </g>
                   </svg>
                 </div>
-                <h5>{{ \App\Models\Quantity::all()->count() ?? 0 }}</h5>
-                <p><a class="h4 text-decoration-underline" href="{{ route('quantities.index') }}">الكميات</a></p>
+                <h5></h5>
+                <p><a class="h4 text-decoration-underline" href="{{ route('units.index') }}">الوحدات</a></p>
                 {{-- <a class="btn-arrow arrow-secondary" href="javascript:void(0)"><i class="toprightarrow-secondary fa fa-arrow-up me-2"></i>90.54% </a> --}}
                 <div class="parrten">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">

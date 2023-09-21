@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.master')
-@section('title') تعديل ({{ $user->name }}) @endsection
-@section('title-heading') تعديل {{ $user->name }} @endsection
+@section('title') الملف الشخصي ({{ $user->name }}) @endsection
+@section('title-heading') {{ $user->name }} @endsection
 @section('main-content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
@@ -17,14 +17,9 @@
             <div class="col-sm-12 col-xl-12 xl-100">
                 <div class="card-body">
                     <div class="tab-content" id="pills-tabContent">
-                        <form action="{{route('user-profile.updateInfo', $user->id)}}" class="forms-sample" method="POST" id="alert-form">
-                            @csrf
-                            @method('PATCH')
-                            @include('dashboard.user-profile.form-update')
-                            <input type="submit" value="تعديل" class="btn btn-primary border-info text-light me-2">
-                            <a href="{{ route('user-profile.changePasswordView', $user->id) }}" class="btn btn-warning text-light me-2">تريد تغيير كلمة المرور؟</a>
-                            <a href="{{ route('user-profile.index', $user->id) }}" class="btn btn-secondary text-light me-2">الرجوع الي الملف الشخصي</a>
-                        </form>
+                        @include('dashboard.pages.user-profile.form-view')
+                        <a href="{{ route('user-profile.edit', $user->id) }}" class="btn btn-secondary text-light me-2">تعديل حسابك الشخصي؟</a>
+                        <a href="{{ route('user-profile.changePasswordView', $user->id) }}" class="btn btn-warning text-light me-2">تريد تغيير كلمة المرور؟</a>
                     </div>
                 </div>
             </div>

@@ -5,10 +5,12 @@ use App\Http\Controllers\dashboard\HomeController;
 use App\Http\Controllers\dashboard\UserProfileController;
 use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\SubCategoryController;
-use App\Http\Controllers\dashboard\QuantityController;
+use App\Http\Controllers\dashboard\UnitController;
 use App\Http\Controllers\dashboard\TypeController;
 use App\Http\Controllers\dashboard\CompanyController;
-use App\Http\Controllers\dashboard\StoreController;
+use App\Http\Controllers\dashboard\ExportedProductController;
+use App\Http\Controllers\dashboard\ProductController;
+use App\Http\Controllers\dashboard\PriceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,10 @@ Auth::routes();
 
 Route::get('/', function () {
     return redirect()->route('login');
+});
+
+Route::fallback(function () {
+    return view('errors.404');
 });
 
 //---------> START Dashboard routes
@@ -50,7 +56,7 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     //---------> END SubCategory routes
 
     //---------> START Quantity routes
-    Route::resource('/quantities', QuantityController::class);
+    Route::resource('/units', UnitController::class);
     //---------> END Quantity routes
 
     //---------> START Type routes
@@ -61,9 +67,17 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::resource('/companies', CompanyController::class);
     //---------> END Company routes
 
-    //---------> START Store routes
-    Route::resource('/stores', StoreController::class);
-    //---------> END Store routes
+    //---------> START Exported Products routes
+    Route::resource('/exported-products', ExportedProductController::class);
+    //---------> END Exported Products routes
+
+    //---------> START Product routes
+    Route::resource('/products', ProductController::class);
+    //---------> END Product routes
+
+    //---------> START Price routes
+    Route::resource('/prices', PriceController::class);
+    //---------> END Price routes
 });
 //---------> END Dashboard routes
 

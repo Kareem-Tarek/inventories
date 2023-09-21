@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quantities', function (Blueprint $table) {
+        Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quantities');
+        Schema::dropIfExists('units');
     }
 };

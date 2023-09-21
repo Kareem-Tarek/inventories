@@ -17,7 +17,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         $subCategories = SubCategory::all();
-        return view('dashboard.sub-categories.index', compact('subCategories'));
+        return view('dashboard.pages.sub-categories.index', compact('subCategories'));
     }
 
     /**
@@ -28,7 +28,7 @@ class SubCategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('dashboard.sub-categories.create', compact('categories'));
+        return view('dashboard.pages.sub-categories.create', compact('categories'));
     }
 
     /**
@@ -79,7 +79,7 @@ class SubCategoryController extends Controller
     {
         $subCategory_model = SubCategory::findOrFail($id);
         $categories        = Category::all();
-        return view('dashboard.sub-categories.edit', compact('subCategory_model', 'categories'));
+        return view('dashboard.pages.sub-categories.edit', compact('subCategory_model', 'categories'));
     }
 
     /**

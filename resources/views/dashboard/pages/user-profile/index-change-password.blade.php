@@ -41,7 +41,7 @@
                         <form action="{{route('user-profile.changePassword', $user->id)}}" class="forms-sample" method="POST" id="alert-form">
                             @csrf
                             @method('PATCH')
-                            @include('dashboard.user-profile.form-change-password')
+                            @include('dashboard.pages.user-profile.form-change-password')
                             <input type="submit" value="تأكيد" class="btn btn-primary border-info text-light me-2">
                             <a href="{{ route('user-profile.index', $user->id) }}" class="btn btn-secondary text-light me-2">الرجوع الي الملف الشخصي</a>
                         </form>
