@@ -1,5 +1,6 @@
 @extends('layouts.dashboard.master')
 @section('title', 'جميع الفئات الفرعية')
+@section('title-heading', 'جميع الفئات الفرعية')
 @section('main-content')
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -73,7 +74,7 @@
                             </tr>
                             @empty
                         <div class="alert alert-danger text-center">
-                            <span class="h6">لا توجد فئات فرعية موجودة في قاعدة البيانات حتى الآن!</span>
+                            <span class="h6">لا توجد فئات فرعية في قاعدة البيانات حتى الآن!</span>
                         </div>
                     @endforelse
                             </tbody>

@@ -30,7 +30,7 @@ Route::get('/', function () {
 });
 
 Route::fallback(function () {
-    return view('errors.404');
+    return abort('404');
 });
 
 //---------> START Dashboard routes

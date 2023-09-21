@@ -15,7 +15,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::all();
+        return view('dashboard.pages.types.index', compact('types'));
     }
 
     /**
@@ -25,7 +26,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.pages.types.create');
     }
 
     /**
@@ -36,7 +37,19 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate Type
+        $request->validate([
+            'title'       => 'required|unique:types,title|max:255',
+        ]);
+
+        //create a new object (row) for the Type
+        $type              = new Type();
+        $type->title       = $request->title;
+        $type->updated_at  = null;
+        $type->save();
+
+        return redirect()->route('types.index')
+            ->with('created_type_successfully', "تم إنشاء النوع ($type->title) بنجاح.");
     }
 
     /**
@@ -58,7 +71,8 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $type_model = Type::findOrFail($id);
+        return view('dashboard.pages.types.edit', compact('Type_model'));
     }
 
     /**
@@ -70,8 +84,26 @@ class TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validate Type
+        $request->validate([
+            'title'       => 'required|max:255',
+        ]);
+
+        //updating an existing object (row) from the Type
+        $type_old          = Type::find($id);
+        $type              = Type::find($id);
+        if($type->title == $request->title){
+            $type->title = $type->title;
+        }
+        else{
+            $type->title = $request->title;
+        }
+        $type->save();
+
+        return redirect()->route('types.edit', $type->id)
+            ->with('updated_type_successfully', "تم تحديث النوع ($type_old->title) بنجاح.");
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -81,6 +113,10 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $type = Type::findOrFail($id);
+        $type->delete();
+
+        return redirect()->route('types.index')
+            ->with('deleted_type_successfully', "تم حذف النوع ($type->title) بنجاح.");
     }
 }

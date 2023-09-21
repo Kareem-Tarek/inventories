@@ -3,6 +3,9 @@
 @section('title')
 تعديل الفئة ({{ $subCategory_model->title }})
 @endsection
+@section('title-heading')
+تعديل الفئة ({{ $subCategory_model->title }})
+@endsection
 
 @section('main-content')
 <div class="col-12 grid-margin stretch-card">
@@ -29,7 +32,7 @@
                         <form action="{{route('subcategories.update', $subCategory_model->id)}}" class="forms-sample" method="POST" id="alert-form">
                             @csrf
                             @method('PUT')
-                            @include('dashboard.sub-categories.form')
+                            @include('dashboard.pages.sub-categories.form')
                             <input type="submit" value="تعديل" class="btn btn-primary border-info text-light me-2">
                             <a href="{{ route('subcategories.index') }}" class="btn btn-secondary text-light me-2">الرجوع الي القائمة الرئيسية</a>
                         </form>

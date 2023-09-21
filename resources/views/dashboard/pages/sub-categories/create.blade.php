@@ -1,6 +1,7 @@
 @extends('layouts.dashboard.master')
 @inject('subCategory_model', 'App\Models\SubCategory')
 @section('title', 'إضافة فئة فرعية')
+@section('title-heading', 'إضافة فئة فرعية')
 @section('main-content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
@@ -15,7 +16,7 @@
                     <div class="tab-content" id="pills-tabContent">
                         <form action="{{route('subcategories.store')}}" class="forms-sample" method="POST" id="alert-form">
                             @csrf
-                            @include('dashboard.sub-categories.form')
+                            @include('dashboard.pages.sub-categories.form')
                             <input type="submit" value="إضافة" class="btn btn-info border-info text-light me-2">
                             <input type="reset" value="إعادة ضبط" class="btn btn-light border-secondary">
                         </form>

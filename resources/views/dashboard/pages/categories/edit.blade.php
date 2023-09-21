@@ -3,6 +3,9 @@
 @section('title')
 تعديل الفئة ({{ $Category_model->title }})
 @endsection
+@section('title-heading')
+تعديل الفئة ({{ $Category_model->title }})
+@endsection
 
 @section('main-content')
 <div class="col-12 grid-margin stretch-card">
@@ -29,7 +32,7 @@
                         <form action="{{route('categories.update', $Category_model->id)}}" class="forms-sample" method="POST" id="alert-form">
                             @csrf
                             @method('PUT')
-                            @include('dashboard.categories.form')
+                            @include('dashboard.pages.categories.form')
                             <input type="submit" value="تعديل" class="btn btn-primary border-info text-light me-2">
                             <a href="{{ route('categories.index') }}" class="btn btn-secondary text-light me-2">الرجوع الي القائمة الرئيسية</a>
                         </form>
