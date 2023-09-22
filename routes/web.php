@@ -8,9 +8,10 @@ use App\Http\Controllers\dashboard\SubCategoryController;
 use App\Http\Controllers\dashboard\UnitController;
 use App\Http\Controllers\dashboard\TypeController;
 use App\Http\Controllers\dashboard\CompanyController;
-use App\Http\Controllers\dashboard\ExportedProductController;
 use App\Http\Controllers\dashboard\ProductController;
 use App\Http\Controllers\dashboard\PriceController;
+use App\Http\Controllers\dashboard\ExportedProductController;
+use App\Http\Controllers\dashboard\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +80,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     //---------> START Price routes
     Route::resource('/prices', PriceController::class);
     //---------> END Price routes
+
+    //---------> START Invoice routes
+    Route::resource('/invoices', InvoiceController::class);
+    //---------> END Invoice routes
 });
 //---------> END Dashboard routes
 

@@ -150,6 +150,21 @@
                 </div>
             </li>
 
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="clipboard"></i><span>Invoices</span></a>
+                <div class="mega-menu-container menu-content">
+                  <div class="container">
+                    <div class="row">
+                      <div class="mega-box">
+                        <div class="link-section">
+                              <a class="text-muted" href="{{ route('invoices.index') }}">All Invoices</a>
+                              <a class="text-muted" href="{{ route('invoices.create') }}">Create an Invoice</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+
             <li><a class="nav-link menu-title link-nav" href="support-ticket.html"><i data-feather="headphones"></i><span>Support Ticket</span></a></li>
           </ul>
         </div>
