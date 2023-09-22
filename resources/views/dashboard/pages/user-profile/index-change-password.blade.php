@@ -4,6 +4,10 @@
 تعديل كلمة المرور ({{ $user->name }})
 @endsection
 
+@section('title-heading')
+تعديل كلمة المرور ({{ $user->name }})
+@endsection
+
 @section('main-content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">

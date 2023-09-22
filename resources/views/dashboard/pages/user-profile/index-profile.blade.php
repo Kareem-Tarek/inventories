@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.master')
 @section('title') الملف الشخصي ({{ $user->name }}) @endsection
-@section('title-heading') {{ $user->name }} @endsection
+@section('title-heading') الملف الشخصي ({{ $user->name }}) @endsection
 @section('main-content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
