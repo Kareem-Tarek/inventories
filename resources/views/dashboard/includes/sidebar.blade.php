@@ -30,14 +30,14 @@
               </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>Categories</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>الفئات</span></a>
               <div class="mega-menu-container menu-content">
                 <div class="container">
                   <div class="row">
                     <div class="mega-box">
                       <div class="link-section">
-                            <a class="text-muted" href="{{ route('categories.index') }}">All Categories</a>
-                            <a class="text-muted" href="{{ route('categories.create') }}">Create a Category</a>
+                            <a class="text-muted" href="{{ route('categories.index') }}">جميع الفئات</a><br>
+                            <a class="text-muted" href="{{ route('categories.create') }}">إنشاء فئة</a>
                       </div>
                     </div>
                   </div>
@@ -45,14 +45,14 @@
               </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="package"></i><span>Sub-Categories</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="package"></i><span>الفئات الفرعية</span></a>
               <div class="mega-menu-container menu-content">
                 <div class="container">
                   <div class="row">
                     <div class="mega-box">
                       <div class="link-section">
-                            <a class="text-muted" href="{{ route('subcategories.index') }}">All Sub-Categories</a>
-                            <a class="text-muted" href="{{ route('subcategories.create') }}">Create a Sub-Category</a>
+                            <a class="text-muted" href="{{ route('subcategories.index') }}">جميع الفئات الفرعية</a><br>
+                            <a class="text-muted" href="{{ route('subcategories.create') }}">إنشاء فئة فرعية</a>
                       </div>
                     </div>
                   </div>
@@ -60,14 +60,14 @@
               </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="codepen"></i><span>Products</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="codepen"></i><span>المنتجات</span></a>
                 <div class="mega-menu-container menu-content">
                   <div class="container">
                     <div class="row">
                       <div class="mega-box">
                         <div class="link-section">
-                              <a class="text-muted" href="{{ route('products.index') }}">All Products</a>
-                              <a class="text-muted" href="{{ route('products.create') }}">Create a product</a>
+                              <a class="text-muted" href="{{ route('products.index') }}">جميع المنتجات</a><br>
+                              <a class="text-muted" href="{{ route('products.create') }}">إنشاء منتج</a>
                         </div>
                       </div>
                     </div>
@@ -75,14 +75,14 @@
                 </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>Prices</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>الأسعار</span></a>
                 <div class="mega-menu-container menu-content">
                   <div class="container">
                     <div class="row">
                       <div class="mega-box">
                         <div class="link-section">
-                              <a class="text-muted" href="{{ route('prices.index') }}">All Prices</a><br>
-                              <a class="text-muted" href="{{ route('prices.create') }}">Create a Price</a>
+                              <a class="text-muted" href="{{ route('prices.index') }}">جميع الأسعار</a><br>
+                              <a class="text-muted" href="{{ route('prices.create') }}">إنشاء سعر</a>
                         </div>
                       </div>
                     </div>
@@ -90,14 +90,14 @@
                 </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layers"></i><span>Companies</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layers"></i><span>الشركات</span></a>
                 <div class="mega-menu-container menu-content">
                   <div class="container">
                     <div class="row">
                       <div class="mega-box">
                         <div class="link-section">
-                              <a class="text-muted" href="{{ route('companies.index') }}">All Companies</a>
-                              <a class="text-muted" href="{{ route('companies.create') }}">Create a Company</a>
+                              <a class="text-muted" href="{{ route('companies.index') }}">جميع الشركات</a><br>
+                              <a class="text-muted" href="{{ route('companies.create') }}">إنشاء شركة</a>
                         </div>
                       </div>
                     </div>
@@ -105,14 +105,14 @@
                 </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="list"></i><span>Types</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="list"></i><span>الأنواع</span></a>
                 <div class="mega-menu-container menu-content">
                   <div class="container">
                     <div class="row">
                       <div class="mega-box">
                         <div class="link-section">
-                              <a class="text-muted" href="{{ route('types.index') }}">All Types</a><br>
-                              <a class="text-muted" href="{{ route('types.create') }}">Create a Type</a>
+                              <a class="text-muted" href="{{ route('types.index') }}">جميع الأنواع</a><br>
+                              <a class="text-muted" href="{{ route('types.create') }}">إنشاء نوع</a>
                         </div>
                       </div>
                     </div>
@@ -120,14 +120,14 @@
                 </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="menu"></i><span>Units</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="menu"></i><span>الوحدات</span></a>
                 <div class="mega-menu-container menu-content">
                   <div class="container">
                     <div class="row">
                       <div class="mega-box">
                         <div class="link-section">
-                              <a class="text-muted" href="{{ route('units.index') }}">All Units</a><br>
-                              <a class="text-muted" href="{{ route('units.create') }}">Create a Unit</a>
+                              <a class="text-muted" href="{{ route('units.index') }}">جميع الوحدات</a><br>
+                              <a class="text-muted" href="{{ route('units.create') }}">إنشاء وحدة</a>
                         </div>
                       </div>
                     </div>
@@ -135,14 +135,14 @@
                 </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="corner-up-right"></i><span>Exported Products</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="corner-up-right"></i><span>المنتجات المنصرفة</span></a>
                 <div class="mega-menu-container menu-content">
                   <div class="container">
                     <div class="row">
                       <div class="mega-box">
                         <div class="link-section">
-                              <a class="text-muted" href="{{ route('exported-products.index') }}">All Exported Products</a>
-                              <a class="text-muted" href="{{ route('exported-products.create') }}">Create an Exported Product</a>
+                              <a class="text-muted" href="{{ route('exported-products.index') }}">جميع المنتجات المنصرفة</a>
+                              <a class="text-muted" href="{{ route('exported-products.create') }}">إنشاء منصرف المخزن</a>
                         </div>
                       </div>
                     </div>
@@ -150,14 +150,14 @@
                 </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="clipboard"></i><span>Invoices</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="clipboard"></i><span>الفواتير</span></a>
                 <div class="mega-menu-container menu-content">
                   <div class="container">
                     <div class="row">
                       <div class="mega-box">
                         <div class="link-section">
-                              <a class="text-muted" href="{{ route('invoices.index') }}">All Invoices</a>
-                              <a class="text-muted" href="{{ route('invoices.create') }}">Create an Invoice</a>
+                              <a class="text-muted" href="{{ route('invoices.index') }}">جميع الفواتير</a><br>
+                              <a class="text-muted" href="{{ route('invoices.create') }}">إنشاء فتورة</a>
                         </div>
                       </div>
                     </div>
@@ -165,7 +165,7 @@
                 </div>
             </li>
 
-            <li><a class="nav-link menu-title link-nav" href="support-ticket.html"><i data-feather="headphones"></i><span>Support Ticket</span></a></li>
+            {{-- <li><a class="nav-link menu-title link-nav" href="support-ticket.html"><i data-feather="headphones"></i><span>Support Ticket</span></a></li> --}}
           </ul>
         </div>
         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
