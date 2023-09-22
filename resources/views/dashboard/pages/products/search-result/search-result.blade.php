@@ -85,7 +85,7 @@
                             </tr>
                             @empty
                         <div class="alert alert-danger text-center">
-                            <span class="h6">عذرا! لا يوجد منتج مطابق لما تبحث عنه.</span>
+                            <span class="h6">عذرا! لا توجد منتجات في قاعدة البيانات تطابق "{{ $search_text_input }}".</span>
                         </div>
                     @endforelse
                             </tbody>
