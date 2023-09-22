@@ -108,7 +108,6 @@ class CategoryController extends Controller
             ->with('updated_category_successfully', "تم تحديث الفئة ($category_old->title) بنجاح.");
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
