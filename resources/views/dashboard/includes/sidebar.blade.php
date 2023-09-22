@@ -29,92 +29,127 @@
                 <h6>عناصر لوحة القيادة</h6>
               </div>
             </li>
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layers"></i><span>Others</span></a>
+
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>Categories</span></a>
               <div class="mega-menu-container menu-content">
                 <div class="container">
                   <div class="row">
-                    <div class="col mega-box">
+                    <div class="mega-box">
                       <div class="link-section">
-                        <div class="submenu-title">
-                          <h5>Error Page</h5>
-                        </div>
-                        <div class="submenu-content opensubmegamenu">
-                          <ul>
-                            <li><a href="error-page1.html" target="_blank">Error page 1</a></li>
-                            <li><a href="error-page2.html" target="_blank">Error page 2</a></li>
-                            <li><a href="error-page3.html" target="_blank">Error page 3</a></li>
-                            <li><a href="error-page4.html" target="_blank">Error page 4                         </a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col mega-box">
-                      <div class="link-section">
-                        <div class="submenu-title">
-                          <h5> Authentication</h5>
-                        </div>
-                        <div class="submenu-content opensubmegamenu">
-                          <ul>
-                            <li><a href="login.html" target="_blank">Login Simple</a></li>
-                            <li><a href="login_one.html" target="_blank">Login with bg image</a></li>
-                            <li><a href="login_two.html" target="_blank">Login with image two                      </a></li>
-                            <li><a href="login-bs-validation.html" target="_blank">Login With validation</a></li>
-                            <li><a href="login-bs-tt-validation.html" target="_blank">Login with tooltip</a></li>
-                            <li><a href="login-sa-validation.html" target="_blank">Login with sweetalert</a></li>
-                            <li><a href="sign-up.html" target="_blank">Register Simple</a></li>
-                            <li><a href="sign-up-one.html" target="_blank">Register with Bg Image                              </a></li>
-                            <li><a href="sign-up-two.html" target="_blank">Register with Bg video                          </a></li>
-                            <li><a href="unlock.html">Unlock User</a></li>
-                            <li><a href="forget-password.html">Forget Password</a></li>
-                            <li><a href="creat-password.html">Creat Password</a></li>
-                            <li><a href="maintenance.html">Maintenance</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col mega-box">
-                      <div class="link-section">
-                        <div class="submenu-title">
-                          <h5>Coming Soon</h5>
-                        </div>
-                        <div class="submenu-content opensubmegamenu">
-                          <ul>
-                            <li><a href="comingsoon.html">Coming Simple</a></li>
-                            <li><a href="comingsoon-bg-video.html">Coming with Bg video</a></li>
-                            <li><a href="comingsoon-bg-img.html">Coming with Bg Image</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col mega-box">
-                      <div class="link-section">
-                        <div class="submenu-title">
-                          <h5>Email templates</h5>
-                        </div>
-                        <div class="submenu-content opensubmegamenu">
-                          <ul>
-                            <li><a href="basic-template.html">Basic Email</a></li>
-                            <li><a href="email-header.html">Basic With Header</a></li>
-                            <li><a href="template-email.html">Ecomerce Template</a></li>
-                            <li><a href="template-email-2.html">Email Template 2</a></li>
-                            <li><a href="ecommerce-templates.html">Ecommerce Email</a></li>
-                            <li><a href="email-order-success.html">Order Success      </a></li>
-                          </ul>
-                        </div>
+                            <a class="text-muted" href="{{ route('categories.index') }}">All Categories</a>
+                            <a class="text-muted" href="{{ route('categories.create') }}">Create a Category</a>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </li>
-            <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="user-check"></i><span>Job Search</span></a>
-              <ul class="nav-submenu menu-content">
-                <li><a href="job-cards-view.html">Cards view</a></li>
-                <li><a href="job-list-view.html">List View</a></li>
-                <li><a href="job-details.html">Job Details</a></li>
-                <li><a href="job-apply.html">Apply</a></li>
-              </ul>
+
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="package"></i><span>Sub-Categories</span></a>
+              <div class="mega-menu-container menu-content">
+                <div class="container">
+                  <div class="row">
+                    <div class="mega-box">
+                      <div class="link-section">
+                            <a class="text-muted" href="{{ route('subcategories.index') }}">All Sub-Categories</a>
+                            <a class="text-muted" href="{{ route('subcategories.create') }}">Create a Sub-Category</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
+
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="codepen"></i><span>Products</span></a>
+                <div class="mega-menu-container menu-content">
+                  <div class="container">
+                    <div class="row">
+                      <div class="mega-box">
+                        <div class="link-section">
+                              <a class="text-muted" href="{{ route('products.index') }}">All Products</a>
+                              <a class="text-muted" href="{{ route('products.create') }}">Create a product</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="dollar-sign"></i><span>Prices</span></a>
+                <div class="mega-menu-container menu-content">
+                  <div class="container">
+                    <div class="row">
+                      <div class="mega-box">
+                        <div class="link-section">
+                              <a class="text-muted" href="{{ route('prices.index') }}">All Prices</a><br>
+                              <a class="text-muted" href="{{ route('prices.create') }}">Create a Price</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layers"></i><span>Companies</span></a>
+                <div class="mega-menu-container menu-content">
+                  <div class="container">
+                    <div class="row">
+                      <div class="mega-box">
+                        <div class="link-section">
+                              <a class="text-muted" href="{{ route('companies.index') }}">All Companies</a>
+                              <a class="text-muted" href="{{ route('companies.create') }}">Create a Company</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="list"></i><span>Types</span></a>
+                <div class="mega-menu-container menu-content">
+                  <div class="container">
+                    <div class="row">
+                      <div class="mega-box">
+                        <div class="link-section">
+                              <a class="text-muted" href="{{ route('types.index') }}">All Types</a><br>
+                              <a class="text-muted" href="{{ route('types.create') }}">Create a Type</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="menu"></i><span>Units</span></a>
+                <div class="mega-menu-container menu-content">
+                  <div class="container">
+                    <div class="row">
+                      <div class="mega-box">
+                        <div class="link-section">
+                              <a class="text-muted" href="{{ route('units.index') }}">All Units</a><br>
+                              <a class="text-muted" href="{{ route('units.create') }}">Create a Unit</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="corner-up-right"></i><span>Exported Products</span></a>
+                <div class="mega-menu-container menu-content">
+                  <div class="container">
+                    <div class="row">
+                      <div class="mega-box">
+                        <div class="link-section">
+                              <a class="text-muted" href="{{ route('exported-products.index') }}">All Exported Products</a>
+                              <a class="text-muted" href="{{ route('exported-products.create') }}">Create an Exported Product</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+
             <li><a class="nav-link menu-title link-nav" href="support-ticket.html"><i data-feather="headphones"></i><span>Support Ticket</span></a></li>
           </ul>
         </div>
