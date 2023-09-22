@@ -10,7 +10,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="mb-2 page-title">نتائج المنتجات ({{ $products_result_count }})</h2>
+        <h2 class="mb-2 page-title">نتائج المنتجات ({{ $products_result_count }}) "{{ $search_text_input }}"</h2>
         <p>
             @if(session()->has('created_product_successfully'))
                 <div class="alert alert-success text-center">
