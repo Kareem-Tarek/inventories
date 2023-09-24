@@ -2,50 +2,77 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\hasMany;
+use Illuminate\Database\Eloquent\{Model, Relations\BelongsTo, Relations\HasMany};
+use Spatie\Activitylog\{LogOptions, Traits\LogsActivity};
 
 
 class Product extends Model
 {
-    use HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
 
-    public function unit()
+    /**
+     * @return BelongsTo
+     */
+    public function unit() : BelongsTo
     {
         return $this->BelongsTo(Unit::class);
     }
 
-    public function category()
+    /**
+     * @return BelongsTo
+     */
+    public function category() : BelongsTo
     {
         return $this->BelongsTo(Category::class);
     }
 
-    public function subCategory()
+    /**
+     * @return BelongsTo
+     */
+    public function subCategory() : BelongsTo
     {
         return $this->BelongsTo(SubCategory::class);
     }
 
-    public function type()
+    /**
+     * @return BelongsTo
+     */
+    public function type() : BelongsTo
     {
         return $this->BelongsTo(Type::class);
     }
 
-    public function company()
+    /**
+     * @return BelongsTo
+     */
+    public function company() : BelongsTo
     {
         return $this->BelongsTo(Company::class);
     }
 
-    public function exportedProduct()
+    /**
+     * @return HasMany
+     */
+    public function exportedProduct() : HasMany
     {
         return $this->hasMany(ExportedProduct::class);
     }
 
-    public function price()
+    /**
+     * @return HasMany
+     */
+    public function price() : HasMany
     {
         return $this->hasMany(Price::class);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->useLogName( 'Product')
+            ->logAll()
+            ->setDescriptionForEvent(fn (string $eventName) => "This product has been {$eventName}");
     }
 }
