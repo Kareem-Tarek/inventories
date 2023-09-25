@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\{RedirectResponse};
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 
@@ -12,18 +13,18 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::latest()->paginate();
         return view('dashboard.pages.categories.index', compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
@@ -33,82 +34,64 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CategoryRequest $request
+     * @return RedirectResponse
      */
-    public function store(CategoryRequest $request)
+    public function store(CategoryRequest $request) : RedirectResponse
     {
-        //create a new object (row) for the Category
-        Category::create([
-            "title"       => $request->title,
-            "description" => $request->description,
-            "updated_at"  => null,
-        ]);
+        try {
+            Category::create($request->validated());
+            //DB::table('categories')->insert([$request->validate()]);
+            return redirect()->route('categories.index')->with('successfully', __('Created successfully'));
+        } catch (\Exception $exception){
+            return redirect()->route('categories.index')->with('failed', 'Something went wrong');
+        }
 
-        return redirect()->route('categories.index')
-            ->with('created_category_successfully', "تم إنشاء الفئة ($request->title) بنجاح.");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return View
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $Category_model = Category::findOrFail($id);
+        $Category_model = $category;
         return view('dashboard.pages.categories.edit', compact('Category_model'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CategoryRequest $request
+     * @param Category        $category
+     * @return RedirectResponse
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //updating an existing object (row) from the Category
-        $category_old          = Category::find($id);
-        $category              = Category::find($id);
-        if($category->title == $request->title){
-            $category->title = $category->title;
+        try {
+            $category->update($request->validated());
+            return to_route('categories.index')->with('successfully', __('Updated successfully'));
+        } catch (\Exception $exception) {
+            return to_route('categories.index')->with('failed', __('Something went wrong'));
         }
-        else{
-            $category->title = $request->title;
-        }
-        $category->description = $request->description;
-        $category->save();
-
-        return redirect()->route('categories.edit', $category->id)
-            ->with('updated_category_successfully', "تم تحديث الفئة ($category_old->title) بنجاح.");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-
-        return redirect()->route('categories.index')
-            ->with('deleted_category_successfully', "تم حذف الفئة ($category->title) بنجاح.");
+        try {
+            $category->delete();
+            return redirect()->route('categories.index')->with('successfully', __('Deleted successfully'));
+        } catch (\Exception $exception) {
+            return to_route('categories.index')->with('failed', __('Something went wrong'));
+        }
     }
 }

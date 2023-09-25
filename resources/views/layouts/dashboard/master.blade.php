@@ -51,8 +51,9 @@
         <div class="page-body">
             @include('dashboard.includes.bookmark')
             <!-- Container-fluid starts-->
-            @section('main-content')
-            @show
+            @yield('main-content')
+            @yield('content')
+
             <!-- Container-fluid Ends-->
         </div>
         <!-- footer start-->
@@ -73,7 +74,7 @@
 <script src="{{asset('/assets/js/bootstrap/bootstrap.min.js')}}"></script>
 
 <!-- Theme js-->
-<script src="{{asset('/assets/js/script.j')}}s"></script>
+<script src="{{asset('/assets/js/script.js')}}"></script>
 
 <!-- login js-->
 <!-- Plugin used-->

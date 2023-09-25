@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\{Model, Relations\HasMany};
+use Illuminate\Database\Eloquent\{Model, Relations\HasMany, Factories\HasFactory};
 use Spatie\Activitylog\{LogOptions, Traits\LogsActivity};
 
 class Category extends Model
@@ -36,6 +35,6 @@ class Category extends Model
         return LogOptions::defaults()
             ->useLogName('Category')
             ->logAll()
-            ->setDescriptionForEvent(fn (string $eventName) => "This Category has been {$eventName}");
+            ->setDescriptionForEvent(fn (string $eventName) => "This Category has been $eventName");
     }
 }

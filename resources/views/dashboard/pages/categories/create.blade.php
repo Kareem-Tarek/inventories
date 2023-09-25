@@ -1,11 +1,11 @@
 @extends('layouts.dashboard.master')
-@inject('Category_model', 'App\Models\Category')
+@inject('category_model', 'App\Models\Category')
 @section('title', 'إضافة فئة')
 @section('title-heading_1')
 <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">الفئات</a></li>
 @endsection
 @section('title-heading_2', 'إضافة فئة')
-@section('main-content')
+@section('content')
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">

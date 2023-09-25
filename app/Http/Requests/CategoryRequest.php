@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryRequest extends FormRequest
 {
@@ -11,9 +12,31 @@ class CategoryRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize() : bool
     {
         return true;
+    }
+
+    /**
+     * @return string[]
+     */
+     protected function onCreate() : array
+     {
+        return [
+            'title'       => 'required|string|min:3|max:199|unique:categories,title',
+            'description' => 'nullable|min:3',
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function onUpdate() : array
+    {
+        return [
+            'title'       => 'required|max:255',Rule::unique('categories')->ignore($this->title),
+            'description' => 'nullable|min:3',
+        ];
     }
 
     /**
@@ -21,37 +44,9 @@ class CategoryRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-
-     protected function onCreate()
+    public function rules() : array
     {
-        return [
-            'title'       => 'required|max:255',
-            'description' => 'nullable|max:5',
-        ];
-    }
-
-
-    protected function onUpdate()
-    {
-        return [
-            'title'       => 'required|max:255|unique:categories,title',
-            'description' => 'nullable|max:5',
-        ];
-    }
-
-    public function rules()
-    {
-         return  request()->isMethod('put') || request()->isMethod('patch') ?
+         return request()->isMethod('put') || request()->isMethod('patch') ?
              $this->onUpdate() : $this->onCreate();
-    }
-
-    public function messages()
-    {
-        return [
-            'title.required'  => 'مطلوب حقل العنوان.',
-            'title.unique'    => 'العنوان مأخوذ بالفعل. يرجى تجربة عنوان آخر.',
-            'title.max'       => 'عذرا! لقد وصلت إلى الحد الأقصى لعدد الأحرف في حقل العنوان.',
-            'description.max' => 'عذرا! لقد وصلت إلى الحد الأقصى لعدد الأحرف في حقل الوصف.',
-        ];
     }
 }

@@ -1,17 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\dashboard\HomeController;
-use App\Http\Controllers\dashboard\UserProfileController;
-use App\Http\Controllers\dashboard\CategoryController;
-use App\Http\Controllers\dashboard\SubCategoryController;
-use App\Http\Controllers\dashboard\UnitController;
-use App\Http\Controllers\dashboard\TypeController;
-use App\Http\Controllers\dashboard\CompanyController;
-use App\Http\Controllers\dashboard\ProductController;
-use App\Http\Controllers\dashboard\PriceController;
-use App\Http\Controllers\dashboard\ExportedProductController;
-use App\Http\Controllers\dashboard\InvoiceController;
+use Illuminate\Support\Facades\{Auth, Route};
+use App\Http\Controllers\dashboard\{
+    HomeController, UserProfileController, CategoryController,
+    SubCategoryController, UnitController, TypeController, CompanyController, ProductController,
+    PriceController, ExportedProductController, InvoiceController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +42,9 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::patch('/user-profile/change-password/{id}/submit', [UserProfileController::class, 'changePassword'])->name('user-profile.changePassword');
     //---------> END User Profile routes
 
-    //---------> START Category routes
-    Route::resource('/categories', CategoryController::class);
-    //---------> END Category routes
+    Route::resource('categories', CategoryController::class)->except(['show']);
+
+
 
     //---------> START Sub Category routes
     Route::resource('/subcategories', SubCategoryController::class);
