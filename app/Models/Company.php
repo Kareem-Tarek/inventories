@@ -2,18 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\hasMany;
+use Illuminate\Database\Eloquent\{Model, Relations\HasMany};
+use Spatie\Activitylog\{LogOptions, Traits\LogsActivity};
 
 class Company extends Model
 {
-    use HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
 
-    public function product()
+    /**
+     * @return HasMany
+     */
+    public function product() : HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    /**
+     * @return LogOptions
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->useLogName( 'Company')
+            ->logAll()
+            ->setDescriptionForEvent(fn (string $eventName) => "This company has been {$eventName}");
     }
 }
