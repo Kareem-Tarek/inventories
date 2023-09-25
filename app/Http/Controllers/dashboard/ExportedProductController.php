@@ -15,7 +15,8 @@ class ExportedProductController extends Controller
      */
     public function index()
     {
-        //
+        $exportedProducts = ExportedProduct::all();
+        return view('dashboard.pages.exported-products.index', compact('exportedProducts'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ExportedProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.pages.exported-products.create');
     }
 
     /**
@@ -36,7 +37,23 @@ class ExportedProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate Exported Product
+        $request->validate([
+            'title'       => 'required|max:255',
+            'description' => 'nullable|max:1020',
+            'amount'      => 'required|numeric|max:1020',
+        ]);
+
+        //create a new object (row) for the Exported Product
+        ExportedProduct::create([
+            "title"       => $request->title,
+            "description" => $request->description,
+            "amount"      => $request->amount,
+            "updated_at"  => null,
+        ]);
+
+        return redirect()->route('exported-products.index')
+            ->with('created_exportedProduct_successfully', "تم إنشاء منصرف المخزن ($request->title) بنجاح.");
     }
 
     /**
@@ -58,7 +75,8 @@ class ExportedProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ExportedProduct_model = ExportedProduct::findOrFail($id);
+        return view('dashboard.pages.exported-products.edit', compact('ExportedProduct_model'));
     }
 
     /**
@@ -70,7 +88,28 @@ class ExportedProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validate Exported Product
+        $request->validate([
+            'title'       => 'required|max:255',
+            'description' => 'nullable|max:1020',
+            'amount'      => 'required|numeric|max:1020',
+        ]);
+
+        //updating an existing object (row) from the Exported Product
+        $exportedProduct_old          = ExportedProduct::find($id);
+        $exportedProduct              = ExportedProduct::find($id);
+        if($exportedProduct->title == $request->title){
+            $exportedProduct->title = $exportedProduct->title;
+        }
+        else{
+            $exportedProduct->title = $request->title;
+        }
+        $exportedProduct->description = $request->description;
+        $exportedProduct->amount      = $request->amount;
+        $exportedProduct->save();
+
+        return redirect()->route('exported-products.edit', $exportedProduct->id)
+            ->with('updated_exportedProduct_successfully', "تم تحديث منصرف المخزن ($exportedProduct_old->title) بنجاح.");
     }
 
     /**
@@ -81,6 +120,10 @@ class ExportedProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $exportedProduct = ExportedProduct::findOrFail($id);
+        $exportedProduct->delete();
+
+        return redirect()->route('exported-products.index')
+            ->with('deleted_exportedProduct_successfully', "تم حذف منصرف المخزن ($exportedProduct->title) بنجاح.");
     }
 }

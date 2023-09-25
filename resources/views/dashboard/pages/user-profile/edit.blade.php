@@ -21,7 +21,7 @@
                             @csrf
                             @method('PATCH')
                             @include('dashboard.pages.user-profile.form-update')
-                            <input type="submit" value="تعديل" class="btn btn-dark border-info text-light me-2">
+                            <input type="submit" value="تعديل" class="btn btn-secondary border-info text-light me-2">
                             <a href="{{ route('user-profile.changePasswordView', $user->id) }}" class="btn btn-warning text-light me-2">تريد تغيير كلمة المرور؟</a>
                             <a href="{{ route('user-profile.index', $user->id) }}" class="btn btn-secondary text-light me-2">الرجوع الي الملف الشخصي</a>
                         </form>

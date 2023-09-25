@@ -19,7 +19,7 @@
                         <form action="{{route('types.store')}}" class="forms-sample" method="POST" id="alert-form">
                             @csrf
                             @include('dashboard.pages.types.form')
-                            <input type="submit" value="إضافة" class="btn btn-success border-info text-light me-2">
+                            <input type="submit" value="إضافة" class="btn btn-primary border-info text-light me-2">
                             <input type="reset" value="إعادة ضبط" class="btn btn-light border-secondary">
                         </form>
                     </div>

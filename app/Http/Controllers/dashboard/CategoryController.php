@@ -44,11 +44,6 @@ class CategoryController extends Controller
         ]);
 
         //create a new object (row) for the Category
-        // $category              = new Category();
-        // $category->title       = $request->title;
-        // $category->description = $request->description;
-        // $category->updated_at  = null;
-        // $category->save();
         Category::create([
             "title"       => $request->title,
             "description" => $request->description,
@@ -56,7 +51,7 @@ class CategoryController extends Controller
         ]);
 
         return redirect()->route('categories.index')
-            ->with('created_category_successfully', "تم إنشاء الفئة ($category->title) بنجاح.");
+            ->with('created_category_successfully', "تم إنشاء الفئة ($request->title) بنجاح.");
     }
 
     /**

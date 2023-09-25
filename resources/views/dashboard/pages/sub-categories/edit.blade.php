@@ -35,8 +35,8 @@
                             @csrf
                             @method('PUT')
                             @include('dashboard.pages.sub-categories.form')
-                            <input type="submit" value="تعديل" class="btn btn-dark border-info text-light me-2">
-                            <a href="{{ route('subcategories.index') }}" class="btn btn-secondary text-light me-2">الرجوع الي القائمة الرئيسية</a>
+                            <input type="submit" value="تعديل" class="btn btn-secondary border-info text-light me-2">
+                            <a href="{{ route('subcategories.index') }}" class="btn btn-info text-light me-2">الرجوع الي القائمة الرئيسية</a>
                         </form>
                     </div>
                 </div>
