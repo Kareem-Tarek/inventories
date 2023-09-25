@@ -4,8 +4,12 @@
         <div class="col-sm-6">
           {{-- <h3>@yield('title-heading')</h3> --}}
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">الصفحة الرئيسية</a></li>
-            @if(!Route::is('dashboard'))<li class="breadcrumb-item active">@yield('title-heading')</li>@endif
+            <li class="breadcrumb-item active"><a href="{{ route('dashboard') }}">الصفحة الرئيسية</a></li>
+            @if(!Route::is('dashboard'))
+                {{-- <li class="breadcrumb-item">@yield('title-heading_1')</li> --}}
+                @yield('title-heading_1')
+                <li class="breadcrumb-item active">@yield('title-heading_2')</li>
+            @endif
           </ol>
         </div>
         {{-- <div class="col-sm-6">

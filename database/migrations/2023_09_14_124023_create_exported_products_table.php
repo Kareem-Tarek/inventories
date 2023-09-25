@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('exported_products', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('title');
             $table->longText('description')->nullable();
-            $table->float('price');
-            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('cascade');
+            $table->integer('amount');
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@
 
 @extends('layouts.dashboard.master')
 @section('title', '404')
-@section('title-heading', '404')
+@section('title-heading_2', '404')
 @section('main-content')
 <div class="wrapper vh-100">
     <div class="align-items-center h-100 d-flex w-50 mx-auto">

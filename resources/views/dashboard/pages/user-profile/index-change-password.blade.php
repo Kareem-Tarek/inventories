@@ -4,7 +4,7 @@
 تعديل كلمة المرور ({{ $user->name }})
 @endsection
 
-@section('title-heading')
+@section('title-heading_2')
 تعديل كلمة المرور ({{ $user->name }})
 @endsection
 

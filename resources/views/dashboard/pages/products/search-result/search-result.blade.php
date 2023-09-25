@@ -2,7 +2,7 @@
 @section('title')
 نتائج المنتجات ({{ $products_result_count }})
 @endsection
-@section('title-heading')
+@section('title-heading_2')
 نتائج المنتجات ({{ $products_result_count }})
 @endsection
 

@@ -135,13 +135,13 @@
                 </div>
             </li>
 
-            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="corner-up-right"></i><span>المنتجات المنصرفة</span></a>
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="corner-up-right"></i><span>منصرف المخزن</span></a>
                 <div class="mega-menu-container menu-content">
                   <div class="container">
                     <div class="row">
                       <div class="mega-box">
                         <div class="link-section">
-                              <a class="text-muted" href="{{ route('exported-products.index') }}">جميع المنتجات المنصرفة</a>
+                              <a class="text-muted" href="{{ route('exported-products.index') }}">جميع منصرفات المخزن</a>
                               <a class="text-muted" href="{{ route('exported-products.create') }}">إنشاء منصرف المخزن</a>
                         </div>
                       </div>

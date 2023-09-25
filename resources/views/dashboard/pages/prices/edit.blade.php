@@ -3,7 +3,10 @@
 @section('title')
 تعديل السعر ({{ $Price_model->title }})
 @endsection
-@section('title-heading')
+@section('title-heading_1')
+<li class="breadcrumb-item"><a href="{{ route('prices.index') }}">الأسعار</a></li>
+@endsection
+@section('title-heading_2')
 تعديل السعر ({{ $Price_model->title }})
 @endsection
 
@@ -11,10 +14,9 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-            <h4 class="card-title">الأسعار</h4>
-            <p class="card-description">
+            <h4 class="card-title">
                 تعديل السعر (<span class="fw-bold">{{ $Price_model->title }}</span>)
-            </p>
+            </h4>
             <p>
                 @if(session()->has('updated_price_successfully'))
                     <div class="alert alert-success text-center">
@@ -33,7 +35,7 @@
                             @csrf
                             @method('PUT')
                             @include('dashboard.pages.prices.form')
-                            <input type="submit" value="تعديل" class="btn btn-primary border-info text-light me-2">
+                            <input type="submit" value="تعديل" class="btn btn-dark border-info text-light me-2">
                             <a href="{{ route('prices.index') }}" class="btn btn-secondary text-light me-2">الرجوع الي القائمة الرئيسية</a>
                         </form>
                     </div>

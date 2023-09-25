@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.master')
 @section('title', 'جميع الأسعار')
-@section('title-heading', 'جميع الأسعار')
+@section('title-heading_2', 'جميع الأسعار')
 @section('main-content')
 <div class="container-fluid">
     <div class="row justify-content-center">

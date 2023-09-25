@@ -64,11 +64,11 @@ class ProductController extends Controller
             'description'     => 'nullable|max:1020',
             'price'           => 'required|numeric',
             'quantity'        => 'required|integer',
-            'unit_id'         => 'required|integer',
-            'category_id'     => 'required|integer',
-            'sub_category_id' => 'required|integer',
-            'type_id'         => 'required|integer',
-            'company_id'      => 'required|integer',
+            'unit_id'         => 'nullable|integer',
+            'category_id'     => 'nullable|integer',
+            'sub_category_id' => 'nullable|integer',
+            'type_id'         => 'nullable|integer',
+            'company_id'      => 'nullable|integer',
             'warning'         => 'required|integer',
         ]);
 
@@ -135,11 +135,11 @@ class ProductController extends Controller
             'description'     => 'nullable|max:1020',
             'price'           => 'required|numeric',
             'quantity'        => 'required|integer',
-            'unit_id'         => 'required|integer',
-            'category_id'     => 'required|integer',
-            'sub_category_id' => 'required|integer',
-            'type_id'         => 'required|integer',
-            'company_id'      => 'required|integer',
+            'unit_id'         => 'nullable|integer',
+            'category_id'     => 'nullable|integer',
+            'sub_category_id' => 'nullable|integer',
+            'type_id'         => 'nullable|integer',
+            'company_id'      => 'nullable|integer',
             'warning'         => 'required|integer',
         ]);
 

@@ -3,7 +3,10 @@
 @section('title')
 تعديل المنتج ({{ $Product_model->title }})
 @endsection
-@section('title-heading')
+@section('title-heading_1')
+<li class="breadcrumb-item"><a href="{{ route('products.index') }}">المنتجات</a></li>
+@endsection
+@section('title-heading_2')
 تعديل المنتج ({{ $Product_model->title }})
 @endsection
 
@@ -11,10 +14,9 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-            <h4 class="card-title">المنتج</h4>
-            <p class="card-description">
+            <h4 class="card-title">
                 تعديل المنتج (<span class="fw-bold">{{ $Product_model->title }}</span>)
-            </p>
+            </h4>
             <p>
                 @if(session()->has('updated_product_successfully'))
                     <div class="alert alert-success text-center">
@@ -33,7 +35,7 @@
                             @csrf
                             @method('PUT')
                             @include('dashboard.pages.products.form')
-                            <input type="submit" value="تعديل" class="btn btn-primary border-info text-light me-2">
+                            <input type="submit" value="تعديل" class="btn btn-dark border-info text-light me-2">
                             <a href="{{ route('products.index') }}" class="btn btn-secondary text-light me-2">الرجوع الي القائمة الرئيسية</a>
                         </form>
                     </div>

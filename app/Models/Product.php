@@ -39,11 +39,6 @@ class Product extends Model
         return $this->BelongsTo(Company::class);
     }
 
-    public function exportedProduct()
-    {
-        return $this->hasMany(ExportedProduct::class);
-    }
-
     public function price()
     {
         return $this->hasMany(Price::class);

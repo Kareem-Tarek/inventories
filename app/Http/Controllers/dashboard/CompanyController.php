@@ -73,7 +73,7 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        $company_model = Company::findOrFail($id);
+        $Company_model = Company::findOrFail($id);
         return view('dashboard.pages.companies.edit', compact('Company_model'));
     }
 

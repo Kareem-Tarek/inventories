@@ -3,7 +3,7 @@
 @section('title')
 تعديل الوحدة ({{ $Unit_model->title }})
 @endsection
-@section('title-heading')
+@section('title-heading_2')
 تعديل الوحدة ({{ $Unit_model->title }})
 @endsection
 
@@ -11,10 +11,9 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-            <h4 class="card-title">الوحدات</h4>
-            <p class="card-description">
+            <h4 class="card-title">
                 تعديل الوحدة (<span class="fw-bold">{{ $Unit_model->title }}</span>)
-            </p>
+            </h4>
             <p>
                 @if(session()->has('updated_unit_successfully'))
                     <div class="alert alert-success text-center">
@@ -33,7 +32,7 @@
                             @csrf
                             @method('PUT')
                             @include('dashboard.pages.units.form')
-                            <input type="submit" value="تعديل" class="btn btn-primary border-info text-light me-2">
+                            <input type="submit" value="تعديل" class="btn btn-dark border-info text-light me-2">
                             <a href="{{ route('units.index') }}" class="btn btn-secondary text-light me-2">الرجوع الي القائمة الرئيسية</a>
                         </form>
                     </div>

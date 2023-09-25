@@ -3,7 +3,10 @@
 @section('title')
 تعديل الفئة ({{ $subCategory_model->title }})
 @endsection
-@section('title-heading')
+@section('title-heading_1')
+<li class="breadcrumb-item"><a href="{{ route('subcategories.index') }}">الفئات الفرعية</a></li>
+@endsection
+@section('title-heading_2')
 تعديل الفئة ({{ $subCategory_model->title }})
 @endsection
 
@@ -11,10 +14,9 @@
 <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-            <h4 class="card-title">الفئات الفرعية</h4>
-            <p class="card-description">
+            <h4 class="card-title">
                 تعديل الفئة الفرعية (<span class="fw-bold">{{ $subCategory_model->title }}</span>)
-            </p>
+            </h4>
             <p>
                 @if(session()->has('updated_subcategory_successfully'))
                     <div class="alert alert-success text-center">
@@ -33,7 +35,7 @@
                             @csrf
                             @method('PUT')
                             @include('dashboard.pages.sub-categories.form')
-                            <input type="submit" value="تعديل" class="btn btn-primary border-info text-light me-2">
+                            <input type="submit" value="تعديل" class="btn btn-dark border-info text-light me-2">
                             <a href="{{ route('subcategories.index') }}" class="btn btn-secondary text-light me-2">الرجوع الي القائمة الرئيسية</a>
                         </form>
                     </div>

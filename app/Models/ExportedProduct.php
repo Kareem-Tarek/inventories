@@ -12,8 +12,4 @@ class ExportedProduct extends Model
 
     protected $guarded = [];
 
-    public function product()
-    {
-        return $this->BelongsTo(Product::class);
-    }
 }
