@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -35,14 +36,8 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //Validate Category
-        $request->validate([
-            'title'       => 'required|unique:categories,title|max:255',
-            'description' => 'nullable|max:1020',
-        ]);
-
         //create a new object (row) for the Category
         Category::create([
             "title"       => $request->title,
@@ -84,14 +79,8 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //Validate Category
-        $request->validate([
-            'title'       => 'required|max:255',
-            'description' => 'nullable|max:1020',
-        ]);
-
         //updating an existing object (row) from the Category
         $category_old          = Category::find($id);
         $category              = Category::find($id);
