@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, Relations\BelongsTo};
 use Spatie\Activitylog\{LogOptions, Traits\LogsActivity};
 
 
 class Price extends Model
 {
-    use LogsActivity;
+    use LogsActivity, HasFactory;
 
     protected $guarded = [];
 
@@ -26,7 +27,7 @@ class Price extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->useLogName( 'Price')
+            ->useLogName('Price')
             ->logAll()
             ->setDescriptionForEvent(fn (string $eventName) => "This price has been {$eventName}");
     }

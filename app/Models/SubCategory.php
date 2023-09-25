@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, Relations\HasMany, Relations\BelongsTo};
 use Spatie\Activitylog\{Traits\LogsActivity, LogOptions};
 
 class SubCategory extends Model
 {
-    use LogsActivity;
+    use LogsActivity, HasFactory;
 
     protected $guarded = [];
 
@@ -33,7 +34,7 @@ class SubCategory extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->useLogName( 'SubCategory')
+            ->useLogName('SubCategory')
             ->logAll()
             ->setDescriptionForEvent(fn (string $eventName) => "This sub category has been {$eventName}");
     }

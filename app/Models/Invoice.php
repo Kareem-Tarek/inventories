@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model};
 use Spatie\Activitylog\{LogOptions, Traits\LogsActivity};
 
 class Invoice extends Model
 {
-    use LogsActivity;
+    use LogsActivity, HasFactory;
 
     protected $guarded = [];
 
@@ -17,7 +18,7 @@ class Invoice extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->useLogName( 'Invoice')
+            ->useLogName('Invoice')
             ->logAll()
             ->setDescriptionForEvent(fn (string $eventName) => "This invoice has been {$eventName}");
     }

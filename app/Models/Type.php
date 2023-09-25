@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, Relations\HasMany};
 use Spatie\Activitylog\{Traits\LogsActivity, LogOptions};
 
 class Type extends Model
 {
-    use LogsActivity;
+    use LogsActivity, HasFactory;
 
     protected $guarded = [];
 
@@ -25,7 +26,7 @@ class Type extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->useLogName( 'Type')
+            ->useLogName('Type')
             ->logAll()
             ->setDescriptionForEvent(fn (string $eventName) => "This type has been {$eventName}");
     }

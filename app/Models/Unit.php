@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, Relations\HasMany};
 use Spatie\Activitylog\{LogOptions, Traits\LogsActivity};
 class Unit extends Model
 {
-    use LogsActivity;
+    use LogsActivity, HasFactory;
 
     protected $guarded = [];
 
@@ -24,7 +25,7 @@ class Unit extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->useLogName( 'Unit')
+            ->useLogName('Unit')
             ->logAll()
             ->setDescriptionForEvent(fn (string $eventName) => "This unit has been {$eventName}");
     }
