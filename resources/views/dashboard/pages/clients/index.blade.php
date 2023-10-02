@@ -1,13 +1,13 @@
 @extends('layouts.dashboard.master')
-@section('title', 'جميع الفئات')
-@section('title-heading_2', 'جميع الفئات')
+@section('title', 'جميع العملاء')
+@section('title-heading_2', 'جميع العملاء')
 @section('main-content')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title">الفئات ({{\App\Models\Category::count() }})</h2>
+                <h2 class="mb-2 page-title">العملاء ({{\App\Models\Client::count() }})</h2>
                 <div class="d-flex justify-content-end">
-                    <a href="{{ route('categories.create') }}" class="btn btn-primary">إضافة فئة</a>
+                    <a href="{{ route('clients.create') }}" class="btn btn-primary">إضافة عميل</a>
                 </div>
                 <p>@include('dashboard.includes.alert')</p>
                 {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive enhancement, that adds all of these advanced features to any HTML table. </p> --}}
@@ -21,28 +21,30 @@
                                     <thead>
                                     <tr class="h6">
                                         <th>#</th>
-                                        <th class="text-center">العنوان</th>
-                                        <th class="text-center">الوصف</th>
+                                        <th class="text-center">الاسم</th>
+                                        <th class="text-center">المحمول</th>
+                                        <th class="text-center">البريد إلكتروني</th>
                                         <th class="text-center">تاريخ الإنشاء</th>
+                                        <th class="text-center">تاريخ التعديل</th>
                                         <th class="text-center">الأجراءات</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @forelse($categories as $category)
+                                    @forelse($clients as $client)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $category->title }}</td>
-                                            <td>{{ Str::limit($category->description, 100, '...')}}</td>
-                                            <td>{{ $category->created_at->format('Y-m-d') }}</td>
+                                            <td>{{ $client->name }}</td>
+                                            <td>{{ $client->phone }}</td>
+                                            <td>{{ $client->email }}</td>
+                                            <td>{{ $client->created_at->format('Y-m-d') }}</td>
+                                            <td>{{ $client->updated_at->format('Y-m-d') }}</td>
                                             <td>
-                                                {{-- <a href="">edit</a>
-                                                <a href="">delete</a> --}}
                                                 <div class="d-flex justify-content-center align-items-center text-center">
-                                                    <form action="{{ route('categories.destroy', $category->id)}}" method="post">
+                                                    <form action="{{ route('clients.destroy', $client->id)}}" method="post">
                                                         @csrf
                                                         @method("DELETE")
-                                                        <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-primary btn-md p-1 border-2 border-dark text-white font-weight-bold">{{__('Edit')}}</a>
-                                                        <button class="btn btn-danger btn-md p-1 border-2 border-dark text-white font-weight-bold" onclick="return confirm('Are you sure that you want to delete ({{ $category->title }})?');" type="submit" title="{{'Delete '."- ($category->title)"}}">{{__('Delete')}}</button>
+                                                        <a href="{{ route('clients.edit', $client->id)}}" class="btn btn-primary btn-md p-1 border-2 border-dark text-white font-weight-bold">{{__('Edit')}}</a>
+                                                        <button class="btn btn-danger btn-md p-1 border-2 border-dark text-white font-weight-bold" onclick="return confirm('Are you sure that you want to delete ({{ $client->name }})?');" type="submit" title="{{'Delete '."- ($client->name)"}}">{{__('Delete')}}</button>
                                                     </form>
                                                 </div>
                                             </td>

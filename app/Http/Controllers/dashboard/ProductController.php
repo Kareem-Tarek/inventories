@@ -5,11 +5,6 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Unit;
-use App\Models\Category;
-use App\Models\SubCategory;
-use App\Models\Type;
-use App\Models\Company;
 
 class ProductController extends Controller
 {
@@ -41,13 +36,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $units         = Unit::all();
-        $categories    = Category::all();
-        $subCategories = SubCategory::all();
-        $types         = Type::all();
-        $companies     = Company::all();
+        $units         = \App\Models\Unit::all();
+        $categories    = \App\Models\Category::all();
+        $subCategories = \App\Models\SubCategory::all();
+        $types         = \App\Models\Type::all();
+        $companies     = \App\Models\Company::all();
+        $clients       = \App\Models\Client::all();
         return view('dashboard.pages.products.create',
-        compact('units', 'categories', 'subCategories', 'types', 'companies'));
+        compact('units', 'categories', 'subCategories', 'types', 'companies', 'clients'));
     }
 
     /**
@@ -64,11 +60,12 @@ class ProductController extends Controller
             'description'     => 'nullable|max:1020',
             'price'           => 'required|numeric',
             'quantity'        => 'required|integer',
-            'unit_id'         => 'nullable|integer',
-            'category_id'     => 'nullable|integer',
-            'sub_category_id' => 'nullable|integer',
-            'type_id'         => 'nullable|integer',
-            'company_id'      => 'nullable|integer',
+            'unit_id'         => 'nullable|integer|exists:units,id',
+            'category_id'     => 'nullable|integer|exists:categories,id',
+            'sub_category_id' => 'nullable|integer|exists:sub_categories,id',
+            'type_id'         => 'nullable|integer|exists:types,id',
+            'company_id'      => 'nullable|integer|exists:companies,id',
+            'client_id'       => 'nullable|integer|exists:clients,id',
             'warning'         => 'required|integer',
         ]);
 
@@ -83,6 +80,7 @@ class ProductController extends Controller
         $product->sub_category_id = $request->sub_category_id;
         $product->type_id         = $request->type_id;
         $product->company_id      = $request->company_id;
+        $product->client_id       = $request->client_id;
         $product->warning         = $request->warning;
         $product->updated_at      = null;
         $product->save();
@@ -110,14 +108,15 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $Product_model = Product::findOrFail($id);
-        $units         = Unit::all();
-        $categories    = Category::all();
-        $subCategories = SubCategory::all();
-        $types         = Type::all();
-        $companies     = Company::all();
+        $Product_model = \App\Models\Product::findOrFail($id);
+        $units         = \App\Models\Unit::all();
+        $categories    = \App\Models\Category::all();
+        $subCategories = \App\Models\SubCategory::all();
+        $types         = \App\Models\Type::all();
+        $companies     = \App\Models\Company::all();
+        $clients       = \App\Models\Client::all();
         return view('dashboard.pages.products.edit',
-        compact('Product_model', 'units', 'categories', 'subCategories', 'types', 'companies'));
+        compact('Product_model', 'units', 'categories', 'subCategories', 'types', 'companies', 'clients'));
     }
 
     /**
@@ -135,11 +134,12 @@ class ProductController extends Controller
             'description'     => 'nullable|max:1020',
             'price'           => 'required|numeric',
             'quantity'        => 'required|integer',
-            'unit_id'         => 'nullable|integer',
-            'category_id'     => 'nullable|integer',
-            'sub_category_id' => 'nullable|integer',
-            'type_id'         => 'nullable|integer',
-            'company_id'      => 'nullable|integer',
+            'unit_id'         => 'nullable|integer|exists:units,id',
+            'category_id'     => 'nullable|integer|exists:categories,id',
+            'sub_category_id' => 'nullable|integer|exists:sub_categories,id',
+            'type_id'         => 'nullable|integer|exists:types,id',
+            'company_id'      => 'nullable|integer|exists:companies,id',
+            'client_id'       => 'nullable|integer|exists:clients,id',
             'warning'         => 'required|integer',
         ]);
 
@@ -155,6 +155,7 @@ class ProductController extends Controller
         $product->sub_category_id = $request->sub_category_id;
         $product->type_id         = $request->type_id;
         $product->company_id      = $request->company_id;
+        $product->client_id       = $request->client_id;
         $product->warning         = $request->warning;
         $product->save();
 

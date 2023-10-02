@@ -69,6 +69,11 @@ class Product extends Model
         return $this->hasMany(Price::class);
     }
 
+    public function client() : BelongsTo
+    {
+        return $this->BelongsTo(Client::class);
+    }
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

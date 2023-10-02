@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('sub_category_id')->nullable()->constrained('sub_categories')->onDelete('cascade');
             $table->foreignId('type_id')->nullable()->constrained('types')->onDelete('cascade');
             $table->foreignId('company_id')->nullable()->constrained('companies')->onDelete('cascade');
+            $table->foreignId('client_id')->nullable()->constrained('clients')->onDelete('cascade');
             $table->integer('warning');
             $table->timestamps();
         });

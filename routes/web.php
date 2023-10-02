@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\{Auth, Route};
 use App\Http\Controllers\dashboard\{
     HomeController, UserProfileController, CategoryController,
-    SubCategoryController, UnitController, TypeController, CompanyController, ProductController,
-    PriceController, ExportedProductController, InvoiceController
+    SubCategoryController, UnitController, TypeController, CompanyController, ClientController,
+    ProductController, PriceController, ExportedProductController, InvoiceController
 };
 
 /*
@@ -65,6 +65,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     //---------> START Exported Product routes
     Route::resource('/exported-products', ExportedProductController::class);
     //---------> END Exported Product routes
+
+    //---------> START Client routes
+    Route::resource('/clients', ClientController::class);
+    //---------> END Client routes
 
     //---------> START Product routes
     Route::resource('/products', ProductController::class);

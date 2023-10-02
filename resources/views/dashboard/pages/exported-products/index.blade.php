@@ -19,6 +19,9 @@
                 </div>
             @endif
         </p>
+        <div class="d-flex justify-content-end">
+            <a href="{{ route('exported-products.create') }}" class="btn btn-primary">إضافة مصرف المخزن</a>
+        </div>
         {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive enhancement, that adds all of these advanced features to any HTML table. </p> --}}
         <div class="row my-4">
           <!-- Small table -->

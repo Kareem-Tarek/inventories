@@ -145,6 +145,25 @@
 </div>
 
 <div class="form-group">
+    <label for="client_id">العميل</label>
+    <select name="client_id" class="form-control select border-1 border-dark @error('client_id') is-invalid @enderror">
+        <option value="" class="@if($clients->count() == 0) d-none @endif" selected> ---------- اختر العميل ---------- </option>
+        @forelse($clients as $client)
+            <option value="{{ $client->id }}" {{ $client->id == $Product_model->client_id ? 'selected' : '' }}>
+                {{ ucfirst($client->name) }}
+            </option>
+            @empty
+            <option value="" selected> ---------- لا يوجد أي عميل في قاعدة البيانات ---------- </option>
+        @endforelse
+    </select>
+    @error('client_id')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
+</div>
+
+<div class="form-group">
     <label for="warning">التحذير <span class="text-danger">*</span></label>
     <input type="number" name="warning" class="form-control border-1 border-dark mb-2 @error('warning') is-invalid @enderror" id="warning" placeholder="أدخل تحذير المنتج هنا..."
     value="{{Request::old('warning') ? Request::old('warning') : $Product_model->warning}}">

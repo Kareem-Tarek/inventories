@@ -19,6 +19,9 @@
                 </div>
             @endif
         </p>
+        <div class="d-flex justify-content-end">
+            <a href="{{ route('products.create') }}" class="btn btn-primary">إضافة منتج</a>
+        </div>
         {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive enhancement, that adds all of these advanced features to any HTML table. </p> --}}
         <div class="row my-4">
           <!-- Small table -->
@@ -38,6 +41,7 @@
                                 <th>الفئة الفرعية</th>
                                 <th>النوع</th>
                                 <th>الشركة</th>
+                                <th>العميل</th>
                                 <th>التحذير</th>
                                 <th>تاريخ الإنشاء</th>
                                 <th>تاريخ التعديل</th>
@@ -51,11 +55,12 @@
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->description ?? 'لا يوجد' }}</td>
                                 <td>{{ $product->quantity }}</td>
-                                <td>{{ $product->unit->title }}</td>
-                                <td>{{ $product->category->title }}</td>
-                                <td>{{ $product->subCategory->title }}</td>
-                                <td>{{ $product->type->title }}</td>
-                                <td>{{ $product->company->title }}</td>
+                                <td>{{ $product->unit->title ?? 'لا يوجد' }}</td>
+                                <td>{{ $product->category->title ?? 'لا يوجد' }}</td>
+                                <td>{{ $product->subCategory->title  ?? 'لا يوجد' }}</td>
+                                <td>{{ $product->type->title ?? 'لا يوجد' }}</td>
+                                <td>{{ $product->company->title ?? 'لا يوجد' }}</td>
+                                <td>{{ $product->client->name ?? 'لا يوجد' }}</td>
                                 <td>{{ $product->warning }}</td>
                                 <td>{{ $product->created_at }}</td>
                                 <td>{{ $product->updated_at ?? 'لا يوجد' }}</td>
