@@ -1,13 +1,13 @@
 @extends('layouts.dashboard.master')
-@section('title', 'جميع الفئات')
-@section('title-heading_2', 'جميع الفئات')
+@section('title'){{__('All')}} {{__('Prices Names')}}@endsection
+@section('title-heading_2'){{__('All')}} {{__('Prices Names')}}@endsection
 @section('main-content')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="mb-2 page-title">الفئات ({{\App\Models\Category::count() }})</h2>
+                <h2 class="mb-2 page-title">{{__('Prices Names')}} ({{\App\Models\NamePrice::count() }})</h2>
                 <div class="d-flex justify-content-end">
-                    <a href="{{ route('categories.create') }}" class="btn btn-primary">إضافة فئة</a>
+                    <a href="{{ route('names-prices.create') }}" class="btn btn-primary">{{__('Create')}} {{__('Price Name')}}</a>
                 </div>
                 <p>@include('dashboard.includes.alert')</p>
                 {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive enhancement, that adds all of these advanced features to any HTML table. </p> --}}
@@ -22,29 +22,27 @@
                                     <tr class="h6">
                                         <th>#</th>
                                         <th>{{__('ID')}}</th>
-                                        <th class="text-center">{{__('Title')}}</th>
-                                        <th class="text-center">{{__('Description')}}</th>
+                                        <th class="text-center">{{__('Name')}}</th>
                                         <th class="text-center">{{__('Created At')}}</th>
                                         <th class="text-center">{{__('Action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @forelse($categories as $category)
+                                    @forelse($namesPrices as $namePrice)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td></td>
-                                            <td>{{ $category->title }}</td>
-                                            <td>{{ Str::limit($category->description, 100, '...')}}</td>
-                                            <td>{{ $category->created_at->format('Y-m-d') }}</td>
+                                            <td>{{ $namePrice->id }}</td>
+                                            <td>{{ $namePrice->name }}</td>
+                                            <td>{{ $namePrice->created_at->format('Y-m-d') }}</td>
                                             <td>
                                                 {{-- <a href="">edit</a>
                                                 <a href="">delete</a> --}}
                                                 <div class="d-flex justify-content-center align-items-center text-center">
-                                                    <form action="{{ route('categories.destroy', $category->id)}}" method="post">
+                                                    <form action="{{ route('names-prices.destroy', $namePrice->id)}}" method="post">
                                                         @csrf
                                                         @method("DELETE")
-                                                        <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-primary btn-md p-1 border-2 border-dark text-white font-weight-bold">{{__('Edit')}}</a>
-                                                        <button class="btn btn-danger btn-md p-1 border-2 border-dark text-white font-weight-bold" onclick="return confirm('Are you sure that you want to delete ({{ $category->title }})?');" type="submit" title="{{'Delete '."- ($category->title)"}}">{{__('Delete')}}</button>
+                                                        <a href="{{ route('names-prices.edit', $namePrice->id)}}" class="btn btn-primary btn-md p-1 border-2 border-dark text-white font-weight-bold">{{__('Edit')}}</a>
+                                                        <button class="btn btn-danger btn-md p-1 border-2 border-dark text-white font-weight-bold" onclick="return confirm('Are you sure that you want to delete ({{ $namePrice->name }})?');" type="submit" title="{{'Delete '."- ($namePrice->name)"}}">{{__('Delete')}}</button>
                                                     </form>
                                                 </div>
                                             </td>

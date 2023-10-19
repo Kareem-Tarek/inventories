@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\{Auth, Route};
 use App\Http\Controllers\dashboard\{
     HomeController, UserProfileController, CategoryController,
     SubCategoryController, UnitController, TypeController, CompanyController, ClientController,
-    ProductController, PriceController, ExportedProductController, InvoiceController
+    ProductController, PriceController, ExportedProductController, InvoiceController,
+    NamePriceController,
 };
 
 /*
@@ -78,6 +79,10 @@ Route::prefix('dashboard')->middleware(['auth'])->group(function () {
     //---------> START Price routes
     Route::resource('/prices', PriceController::class);
     //---------> END Price routes
+
+    //---------> START Name Price routes
+    Route::resource('/names-prices', NamePriceController::class);
+    //---------> END Name Price routes
 
     //---------> START Invoice routes
     Route::resource('/invoices', InvoiceController::class);

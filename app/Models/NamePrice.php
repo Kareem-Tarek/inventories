@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class NamePrice extends Model
 {
     use HasFactory;
+
+    protected $table = 'names_prices';
+
+    protected $guarded = [];
 }

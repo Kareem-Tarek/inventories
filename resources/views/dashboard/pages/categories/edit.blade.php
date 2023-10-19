@@ -17,14 +17,6 @@
             <h4 class="card-title">
                 تعديل الفئة (<span class="fw-bold">{{ $Category_model->title }}</span>)
             </h4>
-            <p>
-                @if(session()->has('updated_category_successfully'))
-                    <div class="alert alert-success text-center">
-                        <a href="javascript:void(0);" class="close-btn text-decoration-none text-white" onclick="this.parentElement.style.display='none';" style="position:absolute; top:0px; right:5px; font-size: 150%;">&times;</a>
-                        {{ session()->get('updated_category_successfully') }}
-                    </div>
-                @endif
-            </p>
             <div class="col-sm-12 col-xl-12 xl-100">
                 {{-- <div class="card-header pb-0">
                     <h5>Add New Category</h5>

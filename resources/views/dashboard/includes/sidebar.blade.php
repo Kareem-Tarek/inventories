@@ -90,6 +90,21 @@
                 </div>
             </li>
 
+            <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="file-text"></i><span>{{__('Prices Names')}}</span></a>
+                <div class="mega-menu-container menu-content">
+                  <div class="container">
+                    <div class="row">
+                      <div class="mega-box">
+                        <div class="link-section">
+                              <a class="text-muted" href="{{ route('names-prices.index') }}">{{__('All')}} {{__('Prices Names')}}</a><br>
+                              <a class="text-muted" href="{{ route('names-prices.create') }}">{{__('Create')}} {{__('Price Name')}}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+
             <li class="mega-menu"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layers"></i><span>الشركات</span></a>
                 <div class="mega-menu-container menu-content">
                   <div class="container">

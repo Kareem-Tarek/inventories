@@ -40,7 +40,7 @@ class CompanyController extends Controller
         //Validate Company
         $request->validate([
             'title'       => 'required|unique:companies,title|max:255',
-            'description' => 'nullable|max:1020',
+            'description' => 'nullable|min:3|max:1020',
         ]);
 
         //create a new object (row) for the Company
