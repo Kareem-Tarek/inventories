@@ -94,4 +94,15 @@ class NamePriceController extends Controller
             return to_route('names-prices.index')->with('failed', __('Something went wrong'));
         }
     }
+
+    // public function destroy($id)
+    // {
+    //     try {
+    //         $namePrice = NamePrice::findOrFail($id);
+    //         $namePrice->delete();
+    //         return redirect()->route('names-prices.index')->with('successfully', __('Deleted successfully'));
+    //     } catch (\Exception $exception) {
+    //         return to_route('names-prices.index')->with('failed', __('Something went wrong'));
+    //     }
+    // }
 }
