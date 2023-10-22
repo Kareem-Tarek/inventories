@@ -16,7 +16,7 @@ class SubCategoryController extends Controller
      *
      * @return View
      */
-    public function index()
+    public function index() : View
     {
         $subCategories = SubCategory::latest()->paginate();
         return view('dashboard.sub-categories.index', compact('subCategories'));
@@ -27,7 +27,7 @@ class SubCategoryController extends Controller
      *
      * @return View
      */
-    public function create()
+    public function create() : View
     {
         $categories = Category::all();
         return view('dashboard.sub-categories.create', compact('categories'));
@@ -52,7 +52,7 @@ class SubCategoryController extends Controller
      * @param int $id
      * @return View
      */
-    public function edit(int $id)
+    public function edit(int $id) : View
     {
         $subCategory_model = SubCategory::findOrFail($id);
         $categories = Category::all();
@@ -64,7 +64,7 @@ class SubCategoryController extends Controller
      * @param int                $id
      * @return RedirectResponse
      */
-    public function update(SubCategoryRequest $request, int $id)
+    public function update(SubCategoryRequest $request, int $id) : RedirectResponse
     {
         $subCategory = SubCategory::findOrFail($id);
         $subCategory->update($request->validated());
@@ -78,7 +78,7 @@ class SubCategoryController extends Controller
      * @param SubCategory $subCategory
      * @return RedirectResponse
      */
-    public function destroy(SubCategory $subCategory)
+    public function destroy(SubCategory $subCategory) : RedirectResponse
     {
         $subCategory->delete();
         return to_route('subcategories.index')

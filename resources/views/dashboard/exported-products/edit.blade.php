@@ -4,7 +4,19 @@
     <li class="breadcrumb-item"><a href="{{ route('exported-products.index') }}">{{__('Stored Expenses')}}</a></li>
 @endsection
 @section('title-heading_2'){{ $ExportedProduct_model->title }}@endsection
-
+@section('bookmark')
+    <div class="col-sm-6">
+        <!-- Bookmark Start-->
+        <div class="bookmark">
+            <ul>
+                <li>
+                    <a href="{{route('exported-products.create')}}" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="plus"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bookmark Ends-->
+    </div>
+@endsection
 @section('main-content')
     <div class="col-12 grid-margin stretch-card">
         <div class="card">

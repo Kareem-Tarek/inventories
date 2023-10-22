@@ -1,23 +1,39 @@
 @extends('layouts.dashboard.master')
 @section('title', __('Sub Categories'))
 @section('title-heading_2', __('Sub Categories'))
+@section('title-heading_1')
+    <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">{{__('Categories')}}</a></li>
+@endsection
+@section('bookmark')
+    <div class="col-sm-6">
+        <!-- Bookmark Start-->
+        <div class="bookmark">
+            <ul>
+                <li>
+                    <a href="{{route('subcategories.create')}}" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="plus"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bookmark Ends-->
+    </div>
+@endsection
 @section('main-content')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="mb-2 page-title">{{__(__('Sub Categories'))}} ({{ $subCategories->count() }})</h2>
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('subcategories.create') }}" class="btn btn-primary">{{__('Create Sub Categories')}}</a>
-                </div>
+                <p>
+                    @include('dashboard.includes.alert')
+                </p>
                 <div class="row my-4">
                     <!-- Small table -->
                     <div class="col-md-12">
                         <div class="card shadow">
                             <div class="card-body">
                                 <!-- table -->
-                                <table class="table table-bordered border border-5 table-hover mb-0 @if($subCategories->count() == 0) d-none @endif">
-                                    <thead class="thead-dark">
-                                    <tr class="h6 table-secondary">
+                                <table class="table table-bordered border border-5 table-hover mb-0">
+                                    <thead>
+                                    <tr class="h6">
                                         <th>{{__('Title')}}</th>
                                         <th>{{__('Description')}}</th>
                                         <th class="w-25">{{__('Category')}}</th>
@@ -26,9 +42,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+
                                     @forelse($subCategories as $subCategory)
                                         <tr>
-
                                             <td>{{ $subCategory->title }}</td>
                                             <td>{{\Illuminate\Support\Str::limit($subCategory->description)}}</td>
                                             <td>{{ $subCategory->category->title ?? __('Not Found')}}</td>
@@ -49,9 +65,13 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <div class="alert alert-danger text-center">
-                                            <span class="h6">{{__('There is no data yet.')}}</span>
-                                        </div>
+                                        <tr>
+                                            <td colspan="5">
+                                                <div class="alert alert-danger text-center">
+                                                    <span class="h6">{{__('There is no data yet.')}}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @endforelse
                                     </tbody>
                                 </table>

@@ -1,16 +1,26 @@
 @extends('layouts.dashboard.master')
-@section('title', 'جميع العملاء')
-@section('title-heading_2', 'جميع العملاء')
+@section('title', __('Clients'))
+@section('title-heading_2', __('Clients'))
+@section('bookmark')
+    <div class="col-sm-6">
+        <!-- Bookmark Start-->
+        <div class="bookmark">
+            <ul>
+                <li>
+                    <a href="{{route('clients.create')}}" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="plus"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bookmark Ends-->
+    </div>
+@endsection
 @section('main-content')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="mb-2 page-title">العملاء ({{\App\Models\Client::count() }})</h2>
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('clients.create') }}" class="btn btn-primary">إضافة عميل</a>
-                </div>
+
                 <p>@include('dashboard.includes.alert')</p>
-                {{-- <p class="card-text">DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations of progressive enhancement, that adds all of these advanced features to any HTML table. </p> --}}
                 <div class="row my-4">
                     <!-- Small table -->
                     <div class="col-md-12">
@@ -57,6 +67,9 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <div class="pagination justify-content-center pagination-primary">
+                            {{$clients->links('pagination::bootstrap-4')}}
                         </div>
                     </div> <!-- simple table -->
                 </div> <!-- end section -->

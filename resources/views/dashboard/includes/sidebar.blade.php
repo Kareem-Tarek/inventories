@@ -149,7 +149,7 @@
                     </li>
 
                     <li class="mega-menu">
-                        <a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="codepen"></i><span>{{__('Product')}}</span></a>
+                        <a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="codepen"></i><span>{{__('Products')}}</span></a>
                         <div class="mega-menu-container menu-content">
                             <div class="container">
                                 <div class="row">
@@ -195,10 +195,6 @@
                             </div>
                         </div>
                     </li>
-
-
-
-
 
 
                     <li class="mega-menu">

@@ -1,6 +1,19 @@
 @extends('layouts.dashboard.master')
 @section('title', __('Add Company'))
 @section('title-heading_2', __('Add Company'))
+@section('bookmark')
+    <div class="col-sm-6">
+        <!-- Bookmark Start-->
+        <div class="bookmark">
+            <ul>
+                <li>
+                    <a href="{{route('companies.create')}}" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="plus"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bookmark Ends-->
+    </div>
+@endsection
 @section('main-content')
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -9,18 +22,15 @@
                 <p>
                     @include('dashboard.includes.alert')
                 </p>
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('companies.create') }}" class="btn btn-primary">إضافة شركة</a>
-                </div>
                 <div class="row my-4">
                     <!-- Small table -->
                     <div class="col-md-12">
                         <div class="card shadow">
                             <div class="card-body">
                                 <!-- table -->
-                                <table class="table table-bordered border border-5 table-hover mb-0 @if($companies->count() == 0) d-none @endif">
-                                    <thead class="thead-dark">
-                                    <tr class="h6 table-secondary">
+                                <table class="table table-bordered border border-5 table-hover mb-0">
+                                    <thead>
+                                    <tr class="h6 ">
                                         <th>{{__('Title')}}</th>
                                         <th>{{__('Description')}}</th>
                                         <th>{{__('Created At')}}</th>
@@ -50,9 +60,13 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <div class="alert alert-danger text-center">
-                                            <span class="h6">{{__('There is no data yet.')}}</span>
-                                        </div>
+                                        <tr>
+                                            <td colspan="5">
+                                                <div class="alert alert-danger text-center">
+                                                    <span class="h6">{{__('There is no data yet.')}}</span>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @endforelse
                                     </tbody>
                                 </table>

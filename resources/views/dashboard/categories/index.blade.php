@@ -1,14 +1,24 @@
 @extends('layouts.dashboard.master')
 @section('title', __('Categories'))
 @section('title-heading_2', __('Categories'))
+@section('bookmark')
+    <div class="col-sm-6">
+        <!-- Bookmark Start-->
+        <div class="bookmark">
+            <ul>
+                <li>
+                    <a href="{{route('categories.create')}}" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="plus"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bookmark Ends-->
+    </div>
+@endsection
 @section('main-content')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="mb-2 page-title">{{__('Categories')}} ({{\App\Models\Category::count() }})</h2>
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('categories.create') }}" class="btn btn-primary">{{__('Add Category')}}</a>
-                </div>
                 <p>@include('dashboard.includes.alert')</p>
                 <div class="row my-4">
                     <!-- Small table -->
@@ -19,8 +29,7 @@
                                 <table class="table table-bordered border border-5 table-hover mb-0">
                                     <thead>
                                     <tr class="h6">
-                                        <th>#</th>
-                                        <th>{{__('ID')}}</th>
+
                                         <th class="text-center">{{__('Title')}}</th>
                                         <th class="text-center">{{__('Description')}}</th>
                                         <th class="text-center">{{__('Created At')}}</th>
@@ -30,10 +39,8 @@
                                     <tbody>
                                     @forelse($categories as $category)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td></td>
                                             <td>{{ $category->title }}</td>
-                                            <td>{{ \Illuminate\Support\Str::limit($category->description)}}</td>
+                                            <td class="text-md-center">{{ \Illuminate\Support\Str::limit($category->description)}}</td>
                                             <td>{{ $category->created_at->translatedFormat('d M Y') }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center align-items-center text-center">

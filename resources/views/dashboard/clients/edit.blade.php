@@ -4,10 +4,23 @@
     ({{ $Client_model->name }})
 @endsection
 @section('title-heading_1')
-    <li class="breadcrumb-item"><a href="{{ route('clients.index') }}">العملاء</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('clients.index') }}">{{__('Clients')}}</a></li>
 @endsection
 @section('title-heading_2')
     ({{ $Client_model->name }})
+@endsection
+@section('bookmark')
+    <div class="col-sm-6">
+        <!-- Bookmark Start-->
+        <div class="bookmark">
+            <ul>
+                <li>
+                    <a href="{{route('clients.create')}}" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="plus"></i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- Bookmark Ends-->
+    </div>
 @endsection
 
 @section('main-content')

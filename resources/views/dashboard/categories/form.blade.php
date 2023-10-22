@@ -10,7 +10,7 @@
 
 <div class="form-group">
     <label for="description">{{__('Description')}}</label>
-    <textarea name="description" class="form-control border-1 border-dark @error('description') is-invalid @enderror" id="description">{{old('description', $Category_model->description)}}</textarea>
+    <textarea name="description" rows="6" class="form-control border-1 border-dark @error('description') is-invalid @enderror" id="description">{{old('description', $Category_model->description)}}</textarea>
     @error('description')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
