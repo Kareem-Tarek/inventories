@@ -13,7 +13,7 @@ class UserProfileController extends Controller
     {
         $loggedInUser = auth()->user()->id;
         $user         = User::findOrFail($loggedInUser);
-        return view('dashboard.pages.user-profile.index-profile', compact('user'));
+        return view('dashboard.user-profile.index-profile', compact('user'));
     }
 
     public function editProfile($id)
@@ -21,7 +21,7 @@ class UserProfileController extends Controller
         $loggedInUser = auth()->user()->id;
         $user = User::findOrFail($loggedInUser);
         if($user){
-            return view('dashboard.pages.user-profile.edit', compact('user'));
+            return view('dashboard.user-profile.edit', compact('user'));
         }
         else{
             return abort('404');
@@ -67,7 +67,7 @@ class UserProfileController extends Controller
     {
         $loggedInUser = auth()->user()->id;
         $user = User::findOrFail($loggedInUser);
-        return view('dashboard.pages.user-profile.index-change-password', compact('user'));
+        return view('dashboard.user-profile.index-change-password', compact('user'));
     }
 
     public function changePassword(Request $request)

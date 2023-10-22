@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubCategoryRequest;
+use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\{RedirectResponse};
-use App\Http\Requests\SubSubCategoryRequest;
 use App\Models\SubCategory;
-// use App\Models\Category; //
 
 class SubCategoryController extends Controller
 {
@@ -19,7 +19,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         $subCategories = SubCategory::latest()->paginate();
-        return view('dashboard.pages.sub-categories.index', compact('subCategories'));
+        return view('dashboard.sub-categories.index', compact('subCategories'));
     }
 
     /**
@@ -29,7 +29,8 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.pages.sub-categories.create');
+        $categories = Category::all();
+        return view('dashboard.sub-categories.create', compact('categories'));
     }
 
     /**
@@ -40,43 +41,35 @@ class SubCategoryController extends Controller
      */
     public function store(SubCategoryRequest $request) : RedirectResponse
     {
-        try {
-            SubCategory::create($request->validated());
-            // DB::table('categories')->insert([$request->validate()]);
-            return redirect()->route('subcategories.index')->with('successfully', __('Created successfully'));
-        } catch (\Exception $exception){
-            return redirect()->route('subcategories.index')->with('failed', 'Something went wrong');
-        }
+        SubCategory::create($request->validated());
+        return to_route('subcategories.index')
+            ->with('successfully', __('Created successfully'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Category $subCategory
+     * @param int $id
      * @return View
      */
-    public function edit(SubCategory $subCategory)
+    public function edit(int $id)
     {
-        $SubCategory_model = $subCategory;
-        return view('dashboard.pages.sub-categories.edit', compact('SubCategory_model'));
+        $subCategory_model = SubCategory::findOrFail($id);
+        $categories = Category::all();
+        return view('dashboard.sub-categories.edit', compact('subCategory_model', 'categories'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param SubCategoryRequest $request
-     * @param Category        $subCategory
+     * @param int                $id
      * @return RedirectResponse
      */
-    public function update(SubCategoryRequest $request, SubCategory $subCategory)
+    public function update(SubCategoryRequest $request, int $id)
     {
-        try {
-            $subCategory->update($request->validated());
-            return to_route('subcategories.index')->with('successfully', __('Updated successfully'));
-        } catch (\Exception $exception) {
-            return to_route('subcategories.index')->with('failed', __('Something went wrong'));
-        }
+        $subCategory = SubCategory::findOrFail($id);
+        $subCategory->update($request->validated());
+        return to_route('subcategories.index')
+            ->with('successfully', __('Updated successfully'));
     }
 
     /**
@@ -87,11 +80,8 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        try {
-            $subCategory->delete();
-            return redirect()->route('subcategories.index')->with('successfully', __('Deleted successfully'));
-        } catch (\Exception $exception) {
-            return to_route('subcategories.index')->with('failed', __('Something went wrong'));
-        }
+        $subCategory->delete();
+        return to_route('subcategories.index')
+            ->with('successfully', __('Deleted successfully'));
     }
 }

@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, Relations\BelongsTo};
 use Spatie\Activitylog\{LogOptions, Traits\LogsActivity};
 
 
 class Price extends Model
 {
-    use LogsActivity, HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
 
@@ -19,6 +18,14 @@ class Price extends Model
     public function product() : BelongsTo
     {
         return $this->BelongsTo(Product::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function name_prices() : BelongsTo
+    {
+        return $this->BelongsTo(NamePrice::class, 'name_price_id');
     }
 
     /**

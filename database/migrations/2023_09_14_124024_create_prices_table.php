@@ -11,15 +11,16 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() : void
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
-            $table->float('value');
-            $table->float('discount')->default(0);
+            $table->decimal('price');
+            $table->decimal('discount')->nullable();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->foreignId('name_price_id')->constrained('name_prices')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,7 +29,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down() : void
     {
         Schema::dropIfExists('prices');
     }

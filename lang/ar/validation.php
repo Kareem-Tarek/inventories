@@ -151,6 +151,13 @@ return [
         'description'           => 'الوصف',
         'start'                 => 'تاريخ البدء',
         'end'                   => 'تاريخ الانتهاء',
+        'quantity'                   => 'الكمية',
+        'unit_id'                   => 'الوحدة',
+        'category_id'                   => 'الفئة',
+        'sub_category_id'                   => 'الفئة الفرعية',
+        'type_id'                   => 'النوع',
+        'company_id'                   => 'الشركة',
+        'warning'                   => 'التحذير',
 
     ],
 

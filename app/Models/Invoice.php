@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model};
 use Spatie\Activitylog\{LogOptions, Traits\LogsActivity};
 
 class Invoice extends Model
 {
-    use LogsActivity, HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->integer('amount');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -4,22 +4,22 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Models\Client;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\{RedirectResponse};
 use App\Http\Requests\ClientRequest;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index() : View
     {
         $clients = Client::latest()->paginate();
-        return view('dashboard.pages.clients.index', compact('clients'));
+        return view('dashboard.clients.index', compact('clients'));
     }
 
     /**
@@ -27,9 +27,9 @@ class ClientController extends Controller
      *
      * @return View
      */
-    public function create()
+    public function create() : View
     {
-        return view('dashboard.pages.clients.create');
+        return view('dashboard.clients.create');
     }
 
     /**
@@ -40,14 +40,8 @@ class ClientController extends Controller
      */
     public function store(ClientRequest $request) : RedirectResponse
     {
-        try {
-            Client::create($request->validated());
-            //DB::table('clients')->insert([$request->validate()]);
-            return redirect()->route('clients.index')->with('successfully', __('Created successfully'));
-        } catch (\Exception $exception){
-            return redirect()->route('clients.index')->with('failed', 'Something went wrong');
-        }
-
+        Client::create($request->validated());
+        return redirect()->route('clients.index')->with('successfully', __('Created successfully'));
     }
 
 
@@ -57,10 +51,10 @@ class ClientController extends Controller
      * @param Client $client
      * @return View
      */
-    public function edit(Client $client)
+    public function edit(Client $client) :  View
     {
         $Client_model = $client;
-        return view('dashboard.pages.clients.edit', compact('Client_model'));
+        return view('dashboard.clients.edit', compact('Client_model'));
     }
 
     /**
@@ -72,12 +66,8 @@ class ClientController extends Controller
      */
     public function update(ClientRequest $request, Client $client)
     {
-        try {
-            $client->update($request->validated());
-            return to_route('clients.index')->with('successfully', __('Updated successfully'));
-        } catch (\Exception $exception) {
-            return to_route('clients.index')->with('failed', __('Something went wrong'));
-        }
+        $client->update($request->validated());
+        return to_route('clients.index')->with('successfully', __('Updated successfully'));
     }
 
     /**
@@ -86,13 +76,9 @@ class ClientController extends Controller
      * @param Client $client
      * @return RedirectResponse
      */
-    public function destroy(Client $client)
+    public function destroy(Client $client) : RedirectResponse
     {
-        try {
-            $client->delete();
-            return redirect()->route('clients.index')->with('successfully', __('Deleted successfully'));
-        } catch (\Exception $exception) {
-            return to_route('clients.index')->with('failed', __('Something went wrong'));
-        }
+        $client->delete();
+        return redirect()->route('clients.index')->with('successfully', __('Deleted successfully'));
     }
 }

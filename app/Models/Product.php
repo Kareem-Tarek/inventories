@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, Relations\BelongsTo, Relations\HasMany};
 use Spatie\Activitylog\{LogOptions, Traits\LogsActivity};
 
 
 class Product extends Model
 {
-    use LogsActivity, HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
 
@@ -61,12 +60,13 @@ class Product extends Model
         return $this->hasMany(ExportedProduct::class);
     }
 
+
     /**
      * @return HasMany
      */
-    public function price() : HasMany
+    public function prices() : HasMany
     {
-        return $this->hasMany(Price::class);
+        return $this->hasMany(Price::class,'product_id','id');
     }
 
     public function client() : BelongsTo

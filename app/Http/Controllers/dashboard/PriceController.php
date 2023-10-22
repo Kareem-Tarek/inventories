@@ -3,120 +3,76 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Price;
-use App\Models\Product;
+use App\Http\Requests\PriceRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Models\{NamePrice, Price, Product};
 
 class PriceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index() : View
     {
-        $prices = Price::all();
-        return view('dashboard.pages.prices.index', compact('prices'));
+        $prices = Price::latest()->paginate();
+        return view('dashboard.prices.index', compact('prices'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create() : View
     {
-        $products = Product::all();
-        return view('dashboard.pages.prices.create', compact('products'));
+        $products    = Product::all();
+        $name_prices = NamePrice::all();
+        return view('dashboard.prices.create', compact('products', 'name_prices'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param PriceRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PriceRequest $request) : RedirectResponse
     {
-        //Validate Price
-        $request->validate([
-            'title'      => 'required|unique:prices,title|max:255',
-            'value'      => 'required|numeric',
-            'discount'   => 'required|numeric',
-            'product_id' => 'required|integer',
-        ]);
-
-        //create a new object (row) for the Price
-        $price             = new Price();
-        $price->title      = $request->title;
-        $price->value      = $request->value;
-        $price->discount   = $request->discount;
-        $price->product_id = $request->product_id;
-        $price->updated_at = null;
-        $price->save();
-
-        return redirect()->route('prices.index')
-            ->with('created_price_successfully', "تم إنشاء السعر ($price->title) بنجاح.");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        Price::create($request->validated());
+        return to_route('prices.index')
+            ->with('successfully', __('Created successfully'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function edit($id)
+    public function edit(int $id) : View
     {
         $Price_model = Price::findOrFail($id);
         $products    = Product::all();
-        return view('dashboard.pages.prices.edit', compact('Price_model', 'products'));
+        $name_prices = NamePrice::all();
+        return view('dashboard.prices.edit', compact('Price_model', 'products','name_prices'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param PriceRequest $request
+     * @param int          $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(PriceRequest $request, int $id) : RedirectResponse
     {
-        //Validate Price
-        $request->validate([
-            'title'      => 'required|max:255',
-            'value'      => 'required|numeric',
-            'discount'   => 'required|numeric',
-            'product_id' => 'required|integer',
-        ]);
-
-        //updating an existing object (row) from the Price
-        $price_old          = Price::find($id);
-        $price              = Price::find($id);
-        if($price->title == $request->title){
-            $price->title = $price->title;
-        }
-        else{
-            $price->title = $request->title;
-        }
-        $price->value      = $request->value;
-        $price->discount   = $request->discount;
-        $price->product_id = $request->product_id;
-        $price->save();
-
-        return redirect()->route('prices.edit', $price->id)
-            ->with('updated_price_successfully', "تم تحديث السعر ($price_old->title) بنجاح.");
+        $price = Price::findOrFail($id);
+        $price->update($request->validated());
+        return to_route('prices.index')
+            ->with('successfully', __('Updated successfully'));
     }
 
 
@@ -124,14 +80,12 @@ class PriceController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id) : RedirectResponse
     {
-        $price = Price::findOrFail($id);
-        $price->delete();
-
-        return redirect()->route('prices.index')
-            ->with('deleted_price_successfully', "تم حذف السعر ($price->title) بنجاح.");
+        Price::findOrFail($id)->delete();
+        return to_route('prices.index')
+            ->with('successfully', __('Deleted successfully'));
     }
 }

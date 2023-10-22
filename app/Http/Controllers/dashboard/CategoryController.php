@@ -15,10 +15,10 @@ class CategoryController extends Controller
      *
      * @return View
      */
-    public function index()
+    public function index() : View
     {
         $categories = Category::latest()->paginate();
-        return view('dashboard.pages.categories.index', compact('categories'));
+        return view('dashboard.categories.index', compact('categories'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.pages.categories.create');
+        return view('dashboard.categories.create');
     }
 
     /**
@@ -41,7 +41,6 @@ class CategoryController extends Controller
     {
         try {
             Category::create($request->validated());
-            //DB::table('categories')->insert([$request->validate()]);
             return redirect()->route('categories.index')->with('successfully', __('Created successfully'));
         } catch (\Exception $exception){
             return redirect()->route('categories.index')->with('failed', 'Something went wrong');
@@ -59,7 +58,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $Category_model = $category;
-        return view('dashboard.pages.categories.edit', compact('Category_model'));
+        return view('dashboard.categories.edit', compact('Category_model'));
     }
 
     /**

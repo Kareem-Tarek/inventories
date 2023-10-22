@@ -3,179 +3,118 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Http\Requests\ProductRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\{Factory, View};
+use Illuminate\Http\{RedirectResponse, Request};
+use App\Models\{Category, Company, Product, SubCategory, Type, Unit};
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
-        $products = Product::all();
-        return view('dashboard.pages.products.index', compact('products'));
+        $products = Product::with('prices')->latest()->paginate();
+        return view('dashboard.products.index', compact('products'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Application|Factory|View
+     */
     public function productsSearchResult(Request $request)
     {
         $search_text_input     = $request->search_query;
-        $products_result       = Product::where('title','LIKE',"%{$search_text_input}%")->get();
+        $products_result       = Product::where('title','LIKE',"%$search_text_input%")->get();
         $products_result_count = $products_result->count();
 
-        return view('dashboard.pages.products.search-result.search-result',
-        compact('search_text_input', 'products_result', 'products_result_count'))
-        ->with('i' , ($request->input('page', 1) - 1) * 5);
+        return view('dashboard.products.search-result.search-result', compact('search_text_input', 'products_result', 'products_result_count'))
+            ->with('i' , ($request->input('page', 1) - 1) * 5);
     }
+
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
-        $units         = \App\Models\Unit::all();
-        $categories    = \App\Models\Category::all();
-        $subCategories = \App\Models\SubCategory::all();
-        $types         = \App\Models\Type::all();
-        $companies     = \App\Models\Company::all();
-        $clients       = \App\Models\Client::all();
-        return view('dashboard.pages.products.create',
-        compact('units', 'categories', 'subCategories', 'types', 'companies', 'clients'));
+        $units         = Unit::all();
+        $categories    = Category::all();
+        $subCategories = SubCategory::all();
+        $types         = Type::all();
+        $companies     = Company::all();
+        return view('dashboard.products.create',
+                    compact('units', 'categories', 'subCategories', 'types', 'companies'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //Validate Product
-        $request->validate([
-            'title'           => 'required|max:255',
-            'description'     => 'nullable|max:1020',
-            'price'           => 'required|numeric',
-            'quantity'        => 'required|integer',
-            'unit_id'         => 'nullable|integer|exists:units,id',
-            'category_id'     => 'nullable|integer|exists:categories,id',
-            'sub_category_id' => 'nullable|integer|exists:sub_categories,id',
-            'type_id'         => 'nullable|integer|exists:types,id',
-            'company_id'      => 'nullable|integer|exists:companies,id',
-            'client_id'       => 'nullable|integer|exists:clients,id',
-            'warning'         => 'required|integer',
-        ]);
-
-        //create a new object (row) for the Product
-        $product                  = new Product();
-        $product->title           = $request->title;
-        $product->description     = $request->description;
-        $product->price           = $request->price;
-        $product->quantity        = $request->quantity;
-        $product->unit_id         = $request->unit_id;
-        $product->category_id     = $request->category_id;
-        $product->sub_category_id = $request->sub_category_id;
-        $product->type_id         = $request->type_id;
-        $product->company_id      = $request->company_id;
-        $product->client_id       = $request->client_id;
-        $product->warning         = $request->warning;
-        $product->updated_at      = null;
-        $product->save();
-
-        return redirect()->back()
-            ->with('created_product_successfully', "تم إنشاء المنتج ($product->title) بنجاح.");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $product = Product::create($request->validated());
+        foreach ($request->price as $item) {
+            $product->prices()->create([
+                'price' => $item,
+                'name_price_id'=>  1    ,
+            ]);
+        }
+        return to_route('products.index')
+            ->with('successfully', __('Created successfully'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        $Product_model = \App\Models\Product::findOrFail($id);
-        $units         = \App\Models\Unit::all();
-        $categories    = \App\Models\Category::all();
-        $subCategories = \App\Models\SubCategory::all();
-        $types         = \App\Models\Type::all();
-        $companies     = \App\Models\Company::all();
-        $clients       = \App\Models\Client::all();
-        return view('dashboard.pages.products.edit',
-        compact('Product_model', 'units', 'categories', 'subCategories', 'types', 'companies', 'clients'));
+        $Product_model = Product::findOrFail($id);
+        $units         = Unit::all();
+        $categories    = Category::all();
+        $subCategories = SubCategory::all();
+        $types         = Type::all();
+        $companies     = Company::all();
+        return view('dashboard.products.edit',
+                    compact('Product_model', 'units', 'categories', 'subCategories', 'types', 'companies'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ProductRequest $request
+     * @param int            $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, int $id)
     {
-        //Validate Product
-        $request->validate([
-            'title'           => 'required|max:255',
-            'description'     => 'nullable|max:1020',
-            'price'           => 'required|numeric',
-            'quantity'        => 'required|integer',
-            'unit_id'         => 'nullable|integer|exists:units,id',
-            'category_id'     => 'nullable|integer|exists:categories,id',
-            'sub_category_id' => 'nullable|integer|exists:sub_categories,id',
-            'type_id'         => 'nullable|integer|exists:types,id',
-            'company_id'      => 'nullable|integer|exists:companies,id',
-            'client_id'       => 'nullable|integer|exists:clients,id',
-            'warning'         => 'required|integer',
-        ]);
-
-        //updating an existing object (row) from the Product
-        $product_old              = Product::find($id);
-        $product                  = Product::find($id);
-        $product->title           = $request->title;
-        $product->description     = $request->description;
-        $product->price           = $request->price;
-        $product->quantity        = $request->quantity;
-        $product->unit_id         = $request->unit_id;
-        $product->category_id     = $request->category_id;
-        $product->sub_category_id = $request->sub_category_id;
-        $product->type_id         = $request->type_id;
-        $product->company_id      = $request->company_id;
-        $product->client_id       = $request->client_id;
-        $product->warning         = $request->warning;
-        $product->save();
-
-        return redirect()->route('products.edit', $product->id)
-            ->with('updated_product_successfully', "تم تحديث المنتج ($product_old->title) بنجاح.");
+        $product = Product::find($id);
+        $product->update($request->validated());
+        return to_route('products.index')
+            ->with('successfully', __('Updated successfully'));
     }
-
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $product = Product::findOrFail($id);
-        $product->delete();
-
-        return redirect()->back()
-            ->with('deleted_product_successfully', "تم حذف المنتج ($product->title) بنجاح.");
+        Product::findOrFail($id)->delete();
+        return to_route('products.index')
+            ->with('successfully', __('Deleted successfully'));
     }
 }

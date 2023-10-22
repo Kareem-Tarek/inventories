@@ -30,7 +30,7 @@
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{asset('/assets/css/responsive.css')}}">
 </head>
-<body class="rtl">
+<body class="rtl ">
 <!-- Loader starts-->
 <div class="loader-wrapper">
     <div class="theme-loader">

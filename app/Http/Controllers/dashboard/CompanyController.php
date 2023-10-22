@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\CompanyRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Company;
 
 class CompanyController extends Controller
@@ -11,101 +13,63 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index() : View
     {
-        $companies = Company::all();
-        return view('dashboard.pages.companies.index', compact('companies'));
+        $companies = Company::latest()->paginate();
+        return view('dashboard.companies.index', compact('companies'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create() : View
     {
-        return view('dashboard.pages.companies.create');
+        return view('dashboard.companies.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CompanyRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CompanyRequest $request)
     {
-        //Validate Company
-        $request->validate([
-            'title'       => 'required|unique:companies,title|max:255',
-            'description' => 'nullable|min:3|max:1020',
-        ]);
-
-        //create a new object (row) for the Company
-        $company              = new Company();
-        $company->title       = $request->title;
-        $company->description = $request->description;
-        $company->updated_at  = null;
-        $company->save();
-
-        return redirect()->route('companies.index')
-            ->with('created_company_successfully', "تم إنشاء الشركة ($company->title) بنجاح.");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        Company::create($request->validated());
+        return to_route('companies.index')
+            ->with('successfully', __('Created successfully'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return View
      */
-    public function edit($id)
+    public function edit(int $id) : View
     {
         $Company_model = Company::findOrFail($id);
-        return view('dashboard.pages.companies.edit', compact('Company_model'));
+        return view('dashboard.companies.edit', compact('Company_model'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CompanyRequest $request
+     * @param int            $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CompanyRequest $request, int $id) : RedirectResponse
     {
-        //Validate Company
-        $request->validate([
-            'title'       => 'required|max:255',
-            'description' => 'nullable|max:1020',
-        ]);
+        $company = Company::findOrFail($id);
+        $company->update($request->validated());
 
-        //updating an existing object (row) from the Company
-        $company_old          = Company::find($id);
-        $company              = Company::find($id);
-        if($company->title == $request->title){
-            $company->title = $company->title;
-        }
-        else{
-            $company->title = $request->title;
-        }
-        $company->description = $request->description;
-        $company->save();
-
-        return redirect()->route('companies.edit', $company->id)
-            ->with('updated_company_successfully', "تم تحديث الشركة ($company_old->title) بنجاح.");
+        return to_route('companies.index')
+            ->with('successfully', __('Updated successfully'));
     }
 
 
@@ -113,14 +77,13 @@ class CompanyController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $company = Company::findOrFail($id);
-        $company->delete();
+        Company::findOrFail($id)->delete();
 
-        return redirect()->route('companies.index')
-            ->with('deleted_company_successfully', "تم حذف الشركة ($company->title) بنجاح.");
+        return to_route('companies.index')
+            ->with('successfully', __('Deleted successfully'));
     }
 }

@@ -15,10 +15,10 @@ class NamePriceController extends Controller
      *
      * @return View
      */
-    public function index()
+    public function index() : View
     {
         $namesPrices = NamePrice::latest()->paginate();
-        return view('dashboard.pages.names-prices.index', compact('namesPrices'));
+        return view('dashboard.names-prices.index', compact('namesPrices'));
     }
 
     /**
@@ -26,9 +26,9 @@ class NamePriceController extends Controller
      *
      * @return View
      */
-    public function create()
+    public function create() : View
     {
-        return view('dashboard.pages.names-prices.create');
+        return view('dashboard.names-prices.create');
     }
 
     /**
@@ -39,70 +39,47 @@ class NamePriceController extends Controller
      */
     public function store(NamePriceRequest $request) : RedirectResponse
     {
-        try {
-            NamePrice::create($request->validated());
-            //DB::table('names_prices')->insert([$request->validate()]);
-            return redirect()->route('names-prices.index')->with('successfully', __('Created successfully'));
-        } catch (\Exception $exception){
-            return redirect()->route('names-prices.index')->with('failed', __('Something went wrong'));
-        }
-
+          NamePrice::create($request->validated());
+          return to_route('names-prices.index')
+              ->with('successfully', __('Created successfully'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param NamePrice $namePrice
+     * @param int $id
      * @return View
      */
-    public function edit(NamePrice $namePrice)
+    public function edit(int $id) : View
     {
-        $NamePrice_model = $namePrice;
-        return view('dashboard.pages.names-prices.edit', compact('NamePrice_model'));
+        $NamePrice_model = NamePrice::findOrFail($id);
+        return view('dashboard.names-prices.edit', compact('NamePrice_model'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param NamePriceRequest $request
-     * @param NamePrice        $namePrice
+     * @param                  $id
      * @return RedirectResponse
      */
-    public function update(NamePriceRequest $request, NamePrice $namePrice)
+    public function update(NamePriceRequest $request, $id)
     {
-        try {
-            $namePrice->update($request->validated());
-            return to_route('names-prices.index')->with('successfully', __('Updated successfully'));
-        } catch (\Exception $exception) {
-            return to_route('names-prices.index')->with('failed', __('Something went wrong'));
-        }
+        $namePrice = NamePrice::findOrFail($id);
+        $namePrice->update($request->validated());
+        return to_route('names-prices.index')->with('successfully', __('Updated successfully'));
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param NamePrice $namePrice
+     * @param int $id
      * @return RedirectResponse
      */
-    public function destroy(NamePrice $namePrice)
+    public function destroy(int $id)
     {
-        try {
-            $namePrice->delete();
-            return redirect()->route('names-prices.index')->with('successfully', __('Deleted successfully'));
-        } catch (\Exception $exception) {
-            return to_route('names-prices.index')->with('failed', __('Something went wrong'));
-        }
+        NamePrice::findOrFail($id)->delete();
+        return redirect()->route('names-prices.index')->with('successfully', __('Deleted successfully'));
     }
-
-    // public function destroy($id)
-    // {
-    //     try {
-    //         $namePrice = NamePrice::findOrFail($id);
-    //         $namePrice->delete();
-    //         return redirect()->route('names-prices.index')->with('successfully', __('Deleted successfully'));
-    //     } catch (\Exception $exception) {
-    //         return to_route('names-prices.index')->with('failed', __('Something went wrong'));
-    //     }
-    // }
 }

@@ -3,120 +3,81 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\TypeRequest;
 use App\Models\Type;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
-        $types = Type::all();
-        return view('dashboard.pages.types.index', compact('types'));
+        $types = Type::latest()->paginate();
+        return view('dashboard.types.index', compact('types'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
-        return view('dashboard.pages.types.create');
+        return view('dashboard.types.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param TypeRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(TypeRequest $request)
     {
-        //Validate Type
-        $request->validate([
-            'title'       => 'required|unique:types,title|max:255',
-        ]);
-
-        //create a new object (row) for the Type
-        $type              = new Type();
-        $type->title       = $request->title;
-        $type->updated_at  = null;
-        $type->save();
-
-        return redirect()->route('types.index')
-            ->with('created_type_successfully', "تم إنشاء النوع ($type->title) بنجاح.");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        Type::create($request->validated());
+        return to_route('types.index')
+            ->with('successfully', __('Created successfully'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Type $type
+     * @return View
      */
-    public function edit($id)
+    public function edit(Type $type)
     {
-        $type_model = Type::findOrFail($id);
-        return view('dashboard.pages.types.edit', compact('Type_model'));
+        $Type_model = $type;
+        return view('dashboard.types.edit', compact('Type_model'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param TypeRequest $request
+     * @param Type $type
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(TypeRequest $request, Type $type)
     {
-        //Validate Type
-        $request->validate([
-            'title'       => 'required|max:255',
-        ]);
-
-        //updating an existing object (row) from the Type
-        $type_old          = Type::find($id);
-        $type              = Type::find($id);
-        if($type->title == $request->title){
-            $type->title = $type->title;
-        }
-        else{
-            $type->title = $request->title;
-        }
-        $type->save();
-
-        return redirect()->route('types.edit', $type->id)
-            ->with('updated_type_successfully', "تم تحديث النوع ($type_old->title) بنجاح.");
+        $type->update($request->validated());
+        return to_route('types.index')
+            ->with('successfully', __('Updated successfully'));
     }
-
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Type $type
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Type $type)
     {
-        $type = Type::findOrFail($id);
         $type->delete();
-
-        return redirect()->route('types.index')
-            ->with('deleted_type_successfully', "تم حذف النوع ($type->title) بنجاح.");
+        return to_route('types.index')
+            ->with('successfully', __('Deleted successfully'));
     }
 }
