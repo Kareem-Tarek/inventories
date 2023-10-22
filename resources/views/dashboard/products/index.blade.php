@@ -19,10 +19,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="mb-2 page-title">{{__('Products')}} ({{ $products->count() }})</h2>
-                <p>@include('dashboard.includes.alert')</p>
-                <div class="d-flex justify-content-end">
-                    <a href="{{ route('products.create') }}" class="btn btn-primary">{{__('Add Product')}}</a>
-                </div>
+
                 <p>
                     @include('dashboard.includes.alert')
                 </p>
