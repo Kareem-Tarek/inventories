@@ -19,7 +19,6 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="mb-2 page-title">{{__('Products')}} ({{ $products->count() }})</h2>
-
                 <p>
                     @include('dashboard.includes.alert')
                 </p>
@@ -31,16 +30,15 @@
                                 <!-- table -->
                                 <table class="table table-bordered border border-5 table-hover mb-0">
                                     <thead>
-                                    <tr class="h6">
-                                        <th>{{__('Title')}}</th>
-                                        <th>{{__('Description')}}</th>
-                                        <th>{{__('Quantity')}}</th>
-                                        <th>{{__('Unit')}}</th>
-                                        <th>{{__('Type')}}</th>
-                                        <th>{{__('Warning')}}</th>
-                                        <th>{{__('Created At')}}</th>
-                                        <th>{{__('Action')}}</th>
-                                    </tr>
+                                        <tr class="h6">
+                                            <th>{{__('Title')}}</th>
+                                            <th>{{__('Description')}}</th>
+                                            <th>{{__('Quantity')}}</th>
+                                            <th>{{__('Type')}}</th>
+                                            <th>{{__('Warning')}}</th>
+                                            <th>{{__('Created At')}}</th>
+                                            <th>{{__('Action')}}</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                     @forelse($products as $product)
@@ -48,12 +46,10 @@
                                             <td>{{ $product->title }}</td>
                                             <td>{{ \Illuminate\Support\Str::limit($product->description)}}</td>
                                             <td>{{ $product->quantity }}</td>
-                                            <td>{{ $product->unit->title ?? __('Not Found')}}</td>
                                             <td>{{ $product->type->title ?? __('Not Found') }}</td>
                                             <td>{{ $product->warning }}</td>
                                             <td>{{ $product->created_at->translatedFormat('d M Y') }}</td>
                                              <td>
-
                                                  <div class="d-flex justify-content-center align-items-center text-center">
                                                      <form action="{{ route('products.destroy', $product->id)}}" method="post">
                                                          @csrf

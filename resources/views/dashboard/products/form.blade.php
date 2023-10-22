@@ -135,7 +135,7 @@
     <div class="row">
         <div class="col-12">
             <label for="description">{{__('Description')}}</label>
-            <textarea name="description" rows="5" required class="form-control border-1 border-dark @error('description') is-invalid @enderror" id="description">{{old('description', $Product_model->description)}}</textarea>
+            <textarea name="description" rows="5" class="form-control border-1 border-dark @error('description') is-invalid @enderror" id="description">{{old('description', $Product_model->description)}}</textarea>
             @error('description')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
