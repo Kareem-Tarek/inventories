@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -27,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -38,20 +37,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    /************ Start login by email, name or phone (data that is currently in use (in DB) for the user) ************/
-    public function credentials(Request $request)
-    {
-        if(is_numeric($request->email)){
-            return ['phone' => $request->input('email'), 'password' => $request->password];
-        }
-        elseif(filter_var($request->email, FILTER_VALIDATE_EMAIL)){
-            return ['email' => $request->get('email'), 'password' => $request->password];
-        }
-        else{
-            return ['name' => $request->email, 'password' => $request->password];
-        }
-    }
-    /************ End login by email, name or phone (data that is currently in use (in DB) for the user) ************/
-
 }

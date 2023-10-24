@@ -60,10 +60,10 @@ class NamePriceController extends Controller
      * Update the specified resource in storage.
      *
      * @param NamePriceRequest $request
-     * @param                  $id
+     * @param int              $id
      * @return RedirectResponse
      */
-    public function update(NamePriceRequest $request, $id)
+    public function update(NamePriceRequest $request, int $id)
     {
         $namePrice = NamePrice::findOrFail($id);
         $namePrice->update($request->validated());

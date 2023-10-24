@@ -14,14 +14,6 @@ class Category extends Model
     /**
      * @return HasMany
      */
-    public function subCategory() : HasMany
-    {
-        return $this->hasMany(subCategory::class);
-    }
-
-    /**
-     * @return HasMany
-     */
     public function product() : HasMany
     {
         return $this->hasMany(Product::class);

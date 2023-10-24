@@ -23,7 +23,7 @@ class ProductRequest extends FormRequest
     {
         return [
 
-            'title'           => 'required|max:255',
+            'title'           => 'required|string|min:3|max:255,unique:products,id',
             'description'     => 'required|string|min:3',
             'quantity'        => 'required|integer',
             'unit_id'         => 'nullable|integer|exists:units,id',
@@ -42,7 +42,7 @@ class ProductRequest extends FormRequest
     protected function onUpdate() : array
     {
         return [
-            'title'           => 'required|max:255',
+            'title'           => 'required|max:255,unique:products,id'.$this->id,
             'description'     => 'required|string|min:3',
             'quantity'        => 'required|integer',
             'unit_id'         => 'nullable|integer|exists:units,id',

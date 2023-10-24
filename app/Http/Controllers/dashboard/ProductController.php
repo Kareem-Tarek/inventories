@@ -65,7 +65,7 @@ class ProductController extends Controller
         foreach ($request->price as $item) {
             $product->prices()->create([
                 'price' => $item,
-                'name_price_id'=>  1    ,
+                'name_price_id'=>  1,
             ]);
         }
         return to_route('products.index')

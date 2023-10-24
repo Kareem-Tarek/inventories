@@ -4,10 +4,9 @@ namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubCategoryRequest;
-use App\Models\Category;
+use App\Models\{Category, SubCategory};
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\{RedirectResponse};
-use App\Models\SubCategory;
 
 class SubCategoryController extends Controller
 {
@@ -75,12 +74,12 @@ class SubCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param SubCategory $subCategory
+     * @param $id
      * @return RedirectResponse
      */
-    public function destroy(SubCategory $subCategory) : RedirectResponse
+    public function destroy($id) : RedirectResponse
     {
-        $subCategory->delete();
+        SubCategory::find($id)->delete();
         return to_route('subcategories.index')
             ->with('successfully', __('Deleted successfully'));
     }
